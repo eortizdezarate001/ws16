@@ -17,7 +17,7 @@ function validatePhone(phone){
   var reg = /[0-9]{9}/;
   return reg.test(phone);
 }
-
+  
 function validation(){
   var s = "";
   var b=false;
