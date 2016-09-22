@@ -17,7 +17,12 @@ function validatePhone(phone){
   var reg = /[0-9]{9}/;
   return reg.test(phone);
 }
-  
+
+function validateName(name){
+  var reg = /[A-Z][A-Za-z\s]*/
+  return reg.test(name);
+}
+
 function validation(){
   var s = "";
   var b=false;
@@ -35,5 +40,7 @@ function validation(){
     alert("Incorrect e-mail.");
   else if(validatePhone(document.getElementById("phone").value)==false)
     alert("Incorrect phone number.");
+  else if((validateName(document.getElementById("firstname").value) == false) || validateName(document.getElementById("lastname").value)==false)
+    alert("Names must start capitalized.");
   else ikusBalioak();
 }
