@@ -24,12 +24,15 @@
 			Phone number: <br>
 			<input type="text" id="phone" name="Phone"><font color="red">*</font><br>
 			Specialty: <br>
-			<select id="specialty" name="specialty">
+			<select id="specialty" name="specialty" onChange="addTextField()">
 				  <option value="Software Engineering">Software Engineering</option>
 				  <option value="Computer Engineering">Computer Engineering</option>
 				  <option value="Computer Science">Computer Science</option>
 					<option value="Others">Others</option>
-			</select>  <br>
+			</select> <font color="red">*</font><br>
+      <div id="container" name="container">
+
+      </div>
 			Technologies and tool you're interested in: <br>
 			<textarea name="Intests" rows="8" cols="40"></textarea> <br>
 			Upload a profile picture: <br>

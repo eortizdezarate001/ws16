@@ -19,7 +19,12 @@ function validatePhone(phone){
 }
 
 function validateName(name){
-  var reg = /[A-Z][A-Za-z\s]*/
+  var reg = /[A-Z][A-Za-z\s]+/;
+  return reg.test(name);
+}
+
+function validateSecondName(name){
+  var reg=/[A-Z][a-z]+\s[A-Z][a-z]+/;
   return reg.test(name);
 }
 
@@ -44,3 +49,25 @@ function validation(){
     alert("Names must start capitalized.");
   else ikusBalioak();
 }
+
+function addTextField(){
+          if(document.getElementById("specialty").value == "Others"){
+
+          var container = document.getElementById("container");
+
+          container.appendChild(document.createTextNode("Please specify your other specialty:"));
+          container.appendChild(document.createElement("br"));
+          var textArea = document.createElement("textArea");
+                textArea.rows = "1";
+                textArea.cols = "20";
+                textArea.name = "Text2";
+          container.appendChild(textArea);
+          container.appendChild(document.createElement("br"));
+          }
+          else{
+            var element = document.getElementById("container");
+            while (element.firstChild) {
+              element.removeChild(element.firstChild);
+            }
+          }
+        }
