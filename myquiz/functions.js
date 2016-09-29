@@ -29,6 +29,7 @@ function validateSecondName(name){
 }
 
 function validation(){
+  var emaitza = false;
   var s = "";
   var b=false;
   var f=document.getElementById("erregistro");
@@ -48,6 +49,9 @@ function validation(){
   else if((validateName(document.getElementById("firstname").value) == false) || validateName(document.getElementById("lastname").value)==false)
     alert("Names must start capitalized.");
   //else ikusBalioak();
+  else emaitza = true;
+
+  return emaitza;
 }
 
 function addTextField(){
