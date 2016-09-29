@@ -47,7 +47,7 @@ function validation(){
     alert("Incorrect phone number.");
   else if((validateName(document.getElementById("firstname").value) == false) || validateName(document.getElementById("lastname").value)==false)
     alert("Names must start capitalized.");
-  else ikusBalioak();
+  //else ikusBalioak();
 }
 
 function addTextField(){

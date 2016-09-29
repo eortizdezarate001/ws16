@@ -12,17 +12,17 @@
 	<body>
 		<div id="signin">
 		<h1><u>Create an account</u></h1>
-		<form id="erregistro" name="erregistro" onSubmit="validation()" method="post">
+		<form action="enroll.php" id="erregistro" name="erregistro" onSubmit="validation()" method="post">
 			First name: <br>
-			<input type="text" id="firstname" name="First Name"><font color="red">*</font><br>
+			<input type="text" id="firstname" name="firstname"><font color="red">*</font><br>
 			Last name:  <br>
-			<input type="text" id="lastname" name="Last Name"><font color="red">*</font><br>
+			<input type="text" id="lastname" name="lastname"><font color="red">*</font><br>
 			e-mail:  <br>
-			<input type="text" id="email" name="E-mail"><font color="red">*</font><br>
+			<input type="text" id="email" name="email"><font color="red">*</font><br>
 			Password: <br>
-			<input type="password" id="pass" name="Password"><font color="red">*</font><br>
+			<input type="password" id="pass" name="password"><font color="red">*</font><br>
 			Phone number: <br>
-			<input type="text" id="phone" name="Phone"><font color="red">*</font><br>
+			<input type="text" id="phone" name="phone"><font color="red">*</font><br>
 			Specialty: <br>
 			<select id="specialty" name="specialty" onChange="addTextField()">
 				  <option value="Software Engineering">Software Engineering</option>
@@ -34,7 +34,7 @@
 
       </div>
 			Technologies and tool you're interested in: <br>
-			<textarea name="Intests" rows="8" cols="40"></textarea> <br>
+			<textarea name="interests" rows="8" cols="40"></textarea> <br>
 			Upload a profile picture: <br>
 			<input type="file" name="picture" id="picture" accept="image/*">
 			<p></p>
