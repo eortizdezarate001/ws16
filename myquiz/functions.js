@@ -19,12 +19,7 @@ function validatePhone(phone){
 }
 
 function validateName(name){
-  var reg = /[A-Z][A-Za-z\s]+/;
-  return reg.test(name);
-}
-
-function validateSecondName(name){
-  var reg=/[A-Z][a-z]+\s[A-Z][a-z]+/;
+  var reg = /[A-ZÁÉÍÓÚÑ][A-Za-z\sáéíóúüñ]+/;
   return reg.test(name);
 }
 

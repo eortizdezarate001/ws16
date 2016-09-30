@@ -5,13 +5,14 @@
 		<title>Sign up</title>
 		<script type="text/javascript" src="functions.js" charset="utf-8"></script>
 		<style>
-		  body  {background-image : url("http://3.bp.blogspot.com/-f2XX6_CJNNc/VCaHU7fHwJI/AAAAAAAAGig/ORo4Kah5u-Q/s1600/simple-gray-texture.jpg");}
-			#signin {margin-left: 30px;}
-			</style>
+			h1 		{font-family: Tahoma; font-size: 250%; font-weight: bold; text-align: center}
+		  body  {background-image : url("http://3.bp.blogspot.com/-f2XX6_CJNNc/VCaHU7fHwJI/AAAAAAAAGig/ORo4Kah5u-Q/s1600/simple-gray-texture.jpg");
+			margin-left: 200px; margin-right: 200px;}
+		</style>
 	</head>
 	<body>
-		<div id="signin">
 		<h1><u>Create an account</u></h1>
+		<fieldset>
 		<form action="enroll.php" id="erregistro" name="erregistro" onSubmit="return validation()" method="post">
 			First name: <br>
 			<input type="text" id="firstname" name="firstname"><font color="red">*</font><br>
@@ -33,18 +34,18 @@
       <div id="container" name="container">
 
       </div>
-			Technologies and tool you're interested in: <br>
-			<textarea name="interests" rows="8" cols="40"></textarea> <br>
+			Technologies and tools you're interested in: <br>
+			<textarea name="interests" rows="5" cols="50"></textarea> <br>
 			Upload a profile picture: <br>
 			<input type="file" name="picture" id="picture" accept="image/*">
 			<p></p>
 			<input type="submit" value="Submit">
 			<input type="reset" value="Reset">
 		</form>
-		<p></p>
+	</fieldset>
+	<br>
 		<form action="layout.html">
 				<input type="submit" value="Go back">
 		</form>
-	</div>
 	</body>
 </html>
