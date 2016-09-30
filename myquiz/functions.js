@@ -58,7 +58,7 @@ function addTextField(){
           container.appendChild(document.createElement("br"));
           var textArea = document.createElement("textArea");
                 textArea.rows = "1";
-                textArea.cols = "20";
+                textArea.cols = "15";
                 textArea.name = "Text2";
           container.appendChild(textArea);
           container.appendChild(document.createElement("br"));
