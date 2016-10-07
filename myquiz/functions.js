@@ -56,11 +56,10 @@ function addTextField(){
 
           container.appendChild(document.createTextNode("Please specify your other specialty:"));
           container.appendChild(document.createElement("br"));
-          var textArea = document.createElement("textArea");
-                textArea.rows = "1";
-                textArea.cols = "15";
-                textArea.name = "Text2";
-          container.appendChild(textArea);
+          var text = document.createElement("input");
+            text.type = "text";
+            text.name = "others";
+          container.appendChild(text);
           container.appendChild(document.createElement("br"));
           }
           else{

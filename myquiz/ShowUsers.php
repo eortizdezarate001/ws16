@@ -1,5 +1,6 @@
 <?php
-  $connect = mysqli_connect("mysql.hostinger.es","u102514866_eneko","eortizdezarate001","u102514866_quiz");
+  $connect = mysqli_connect("localhost","root","", "quiz");
+  //$connect = mysqli_connect("mysql.hostinger.es","u102514866_eneko","eortizdezarate001","u102514866_quiz");
   $sql = "SELECT * FROM erabiltzailea";
   $query = mysqli_query($connect,$sql);
 
