@@ -50,22 +50,35 @@ function validation(){
 }
 
 function addTextField(){
-          if(document.getElementById("specialty").value == "Others"){
+  if(document.getElementById("specialty").value == "Others"){
 
-          var container = document.getElementById("container");
+  var container = document.getElementById("container");
 
-          container.appendChild(document.createTextNode("Please specify your other specialty:"));
-          container.appendChild(document.createElement("br"));
-          var text = document.createElement("input");
-            text.type = "text";
-            text.name = "others";
-          container.appendChild(text);
-          container.appendChild(document.createElement("br"));
-          }
-          else{
-            var element = document.getElementById("container");
-            while (element.firstChild) {
-              element.removeChild(element.firstChild);
-            }
-          }
-        }
+  container.appendChild(document.createTextNode("Please specify your other specialty:"));
+  container.appendChild(document.createElement("br"));
+  var text = document.createElement("input");
+    text.type = "text";
+    text.name = "others";
+  container.appendChild(text);
+  container.appendChild(document.createElement("br"));
+  }
+  else{
+    var element = document.getElementById("container");
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
+  }
+}
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          $("#pic")
+          .attr("src", e.target.result)
+          //.width(150)
+          .height(200);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+}

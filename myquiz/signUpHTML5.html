@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sign up</title>
+        <style>
+      body {background-image: url("http://3.bp.blogspot.com/-f2XX6_CJNNc/VCaHU7fHwJI/AAAAAAAAGig/ORo4Kah5u-Q/s1600/simple-gray-texture.jpg");}
+      h1   {color: black; font-family: Tahoma; font-size: 250%; font-weight: bold; text-align: center}
+      p    {color: black; font-size: 150%;}
+      body {color: black; margin-left: 200px; margin-right: 200px;}
+      </style>
+
+  <script type="text/javascript" src="functions.js" charset="utf-8"></script>
+
+  </head>
+  <body hspace="50">
+    <h1><u>Create an account</u></h1>
+    <fieldset>
+    <form action="EnrollWithImage.php" id="erregistro" name="erregistro" method="post" enctype="multipart/form-data">
+      First name:<br>
+      <input type="text" name="firstname" id="firstname" required><font color="red">*</font><br>
+      Last name:<br>
+      <input type="text" name="lastname" id="lastname" required><font color="red">*</font><br>
+      e-mail:<br>
+      <input type="email" name="email" id="email" required><font color="red">*</font><br>
+      Password:<br>
+      <input type="password" name="password" id="pass" required><font color="red">*</font><br>
+      Phone number:<br>
+      <input type="tel" name="phone" id="phone" required><font color="red">*</font><br>
+      Specialty:<br>
+      <select name="specialty" id="specialty" onChange="addTextField()">
+        <option value="Software Engineering">Software Engineering</option>
+        <option value="Computer Engineering">Computer Engineering</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Others">Others</option>
+      </select><font color="red">*</font><br>
+      <div id="container" name="container">
+
+      </div>
+      Technologies and tools you're interested in: <br>
+      <textarea rows="5" cols="50" name="interests"></textarea> <br>
+      Upload a profile picture:<br>
+      <input type="file" name="image" id="image" accept="image/*">
+      <p></p>
+      <button type="submit" value="Submit">Submit</button>
+      <button type="reset" value="Reset">Reset</button>
+    </form>
+    </fieldset>
+    <br>
+    <form action="layout.html">
+      <input type="submit" value="Go back">
+    </form>
+  </body>
+</html>
