@@ -6,6 +6,10 @@
     die('ERROR: Email must not be empty.');
   }
 
+  if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
+    echo("$_POST['email'] is not a valid email address");
+  }
+
   if($_POST['specialty'] == 'Others'){
     $spec = $_POST['others'];
   } else{
