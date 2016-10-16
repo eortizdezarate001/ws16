@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,52 +6,52 @@
 	<title>Sign in</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
 	<style>
-  body	  {font-family: 'Roboto', sans-serif; font-weight: 400;}
-	#header  {
-    font-size: 300%; text-align: center; font-weight: 100;
-    padding-top: 20px;
-  }
-  #main {
-    max-width: 350px;
-    padding-left: 12px;
-    padding-right: 12px;
-    min-height: 400px;
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .form-php{
-    color: #e81123;
-  }
-	.form-input {
-    margin-bottom: 12px;
-    background-color: rgba(255, 255, 255, 0.4);
-    border-color: rgba(0, 0, 0, 0.4);
-    border-style: solid;
-    border-width: 2px;
-    height: 1rem;
-    padding: 4px 8px 8px;
-  }
-  input.login 	{
-    border-width: 0;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    outline: none;
-  }
-  a:link, a:visited{color: #0772C6; text-decoration:none}
-	.button {
-    width: 100%;
-    height:35px;
-    background-color: rgb(19,122,212);
-    font-size: 100%;
-    border:none;
-    color:white;
-  }
-	.button:hover {
-		border:solid;
-		border-color:rgb(8,79,138);
-	}
+    body	  {font-family: 'Roboto', sans-serif; font-weight: 400;}
+  	#header  {
+      font-size: 300%; text-align: center; font-weight: 100;
+      padding-top: 20px;
+    }
+    #main {
+      max-width: 350px;
+      padding-left: 12px;
+      padding-right: 12px;
+      min-height: 400px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .form-php{
+      color: #e81123;
+    }
+  	.form-input {
+      margin-bottom: 12px;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-color: rgba(0, 0, 0, 0.4);
+      border-style: solid;
+      border-width: 2px;
+      height: 1rem;
+      padding: 4px 8px 8px;
+    }
+    input.login 	{
+      border-width: 0;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      outline: none;
+    }
+    a:link, a:visited{color: #0772C6; text-decoration:none}
+  	.button {
+      width: 100%;
+      height:35px;
+      background-color: rgb(19,122,212);
+      font-size: 100%;
+      border:none;
+      color:white;
+    }
+  	.button:hover {
+  		border:solid;
+  		border-color:rgb(8,79,138);
+  	}
 	</style>
 </head>
 <body>
@@ -72,12 +73,14 @@
               $sql = "SELECT * FROM erabiltzailea WHERE Email = '$email' AND Password = '$password'";
               $query = mysqli_query($connect,$sql);
               $row = mysqli_fetch_array($query,MYSQLI_ASSOC);
-
               $count = mysqli_num_rows($query);
 
               if($count == 1){
-                $_SESSION['user'] = $email;
-                header('Location: layout.html');
+                $_SESSION['user-email'] = $email;
+                $_SESSION['user-firstname'] = $row['First name'];
+                $_SESSION['user-lastname'] =  $row['Last name'];
+                header('Location: InsertQuestion.php');
+                exit;
               } else if($count == 0) {
                 $sql2 = "SELECT * FROM erabiltzailea WHERE Email = '$email'";
                 $query2 = mysqli_query($connect,$sql2);
@@ -103,7 +106,9 @@
         <input class="button" type="submit" id='button' name="submit" value="Sign in">
         <br>
   			<br>
-  		  <p>No account? <a href='signUp.html'>Create one!</a></p>
+  		  <p>No account? <a href='signUp.html'>Create one!</a><br>
+          <a href="layout.html">Go back</a>
+        </p>
       </div>
   	</div>
   </form>
