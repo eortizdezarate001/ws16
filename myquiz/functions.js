@@ -53,14 +53,17 @@ function addTextField(){
   if(document.getElementById("specialty").value == "Others"){
 
   var container = document.getElementById("container");
+  var div = document.createElement("div");
+    div.className = "form-input";
 
   container.appendChild(document.createTextNode("Please specify your other specialty:"));
   container.appendChild(document.createElement("br"));
+  container.appendChild(div);
   var text = document.createElement("input");
     text.type = "text";
     text.name = "others";
-  container.appendChild(text);
-  container.appendChild(document.createElement("br"));
+    text.className = "element";
+  div.appendChild(text);
   }
   else{
     var element = document.getElementById("container");

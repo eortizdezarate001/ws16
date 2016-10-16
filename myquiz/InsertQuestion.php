@@ -2,6 +2,8 @@
 	session_start();
 	if(isset($_SESSION['user-email'])){
 		echo "<p align='right'>Hello, ".$_SESSION['user-firstname']." ".$_SESSION['user-lastname']." | <a href='layout.html'>Home</a> (<a href='logout.php'>logout</a>)</p>";
+	} else {
+		die("You need to <a href='SignIn.php'>sign in</a> to access this content.");
 	}
 ?>
 <!DOCTYPE html>
