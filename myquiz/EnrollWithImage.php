@@ -12,7 +12,7 @@
     die('ERROR: Email must not be empty.');
   }
 
-  if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
+  if (filter_var($_POST['email'], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]*[0-9][0-9][0-9]@ikasle\.ehu\.e(u?)s/"))) === false) {
     die('$_POST[email] is not a valid email address');
   }
 

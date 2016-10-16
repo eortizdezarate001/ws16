@@ -9,7 +9,7 @@ function ikusBalioak(){
 }
 
 function validateEmail(email){
-  var reg = /[a-z]*[0-9][0-9][0-9]@ikasle.ehu.e(u?)s/;
+  var reg = /[a-z]*[0-9][0-9][0-9]@ikasle\.ehu\.e(u?)s/;
   return reg.test(email);
 }
 
@@ -42,7 +42,7 @@ function validation(){
   else if(validatePhone(document.getElementById("phone").value)==false)
     alert("Incorrect phone number.");
   else if((validateName(document.getElementById("firstname").value) == false) || validateName(document.getElementById("lastname").value)==false)
-    alert("Names must start capitalized.");
+    alert("Name written incorrectly.");
   //else ikusBalioak();
   else emaitza = true;
 
