@@ -9,7 +9,7 @@ function ikusBalioak(){
 }
 
 function validateEmail(email){
-  var reg = /[a-z]*[0-9][0-9][0-9]@ikasle\.ehu\.e(u?)s/;
+  var reg = /[a-z]*[0-9]{3}@ikasle\.ehu\.e(u?)s/;
   return reg.test(email);
 }
 

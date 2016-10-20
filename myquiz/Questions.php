@@ -1,7 +1,7 @@
 <?php
+
   session_start();
-  //$connect = mysqli_connect("localhost","root","", "quiz");
-  $connect = mysqli_connect("mysql.hostinger.es","u102514866_eneko","eortizdezarate001","u102514866_quiz");
+  include("connect.php");
 
   $sql = "SELECT * FROM galderak";
   $query = mysqli_query($connect,$sql);
@@ -31,29 +31,25 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
     <style>
       body  {font-family: 'Roboto', sans-serif; font-weight: 400;}
+      #header  {
+        font-size: 300%; text-align: center; font-weight: 100;
+        padding-top: 20px;
+      }
       a:link, a:visited{color: #0772C6; text-decoration:none}
-      table {
-          font-family: arial, sans-serif;
-          border-collapse: collapse;
-          width: 100%;
-      }
+      table	{border-collapse: collapse; width: 100%; }
+	     th		{text-align: center;padding: 8px; border-bottom: 1px solid #ddd;}
+	      td 		{padding: 8px; text-align: left; border-bottom: 1px solid #ddd;}
+	       tr:hover{background-color:#f5f5f5}
+         #tr1:hover{background-color: #ffffff};
 
-      td, th {
-          border: 1px solid #dddddd;
-          text-align: left;
-          padding: 8px;
-      }
-
-      tr:nth-child(even) {
-          background-color: #dddddd;
-      }
 </style>
   </head>
   <body>
+    <h1 id='header'> Questions </h1>
     <table>
-      <tr>
-        <th>Question</th>
-        <th>Difficulty</th>
+      <tr id='tr1'>
+        <th width='85%'>Question</th>
+        <th width='15%'>Difficulty</th>
       </tr>
       <?php
         while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)){

@@ -68,8 +68,7 @@ if(isset($_SESSION['user-email'])){
           <!-- php code -->
           <?php
             if(isset($_POST["submit"])){
-              //$connect = mysqli_connect("localhost","root","", "quiz");
-              $connect = mysqli_connect("mysql.hostinger.es","u102514866_eneko","eortizdezarate001","u102514866_quiz");
+              include("connect.php");
 
               $email = mysqli_real_escape_string($connect,$_POST['email']);
               $password = mysqli_real_escape_string($connect,$_POST['password']);

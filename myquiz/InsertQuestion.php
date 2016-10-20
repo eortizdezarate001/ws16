@@ -94,8 +94,7 @@
 </html>
 <?php
 	if(isset($_POST["submit"])){
-		//$connect = mysqli_connect("localhost","root","", "quiz");
-		$connect = mysqli_connect("mysql.hostinger.es","u102514866_eneko","eortizdezarate001","u102514866_quiz");
+		include("connect.php");
 
 		$question = mysqli_real_escape_string($connect,$_POST['question']);
 		$answer = mysqli_real_escape_string($connect,$_POST['answer']);
