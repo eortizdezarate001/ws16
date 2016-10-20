@@ -74,10 +74,10 @@
 			</p>
 			<div class="form-group">
 				<div class="form-input">
-					<input class="q-a" type="text" name="question" id="question" placeholder="Question">
+					<input class="q-a" type="text" name="question" id="question" placeholder="Question" required>
 				</div>
 				<div class="form-input">
-					<input class="q-a" type="text" name="answer" id="answer" placeholder="Answer">
+					<input class="q-a" type="text" name="answer" id="answer" placeholder="Answer" required>
 				</div>
 				<div id="difficulty">
 					1<input type="radio" name="difficulty" value="1">&nbsp;
@@ -108,10 +108,21 @@
 		$query = mysqli_query($connect,$sql);
 		if (!$query){
 	    die('ERROR at query execution:' . mysqli_error($connect));
-	  } else{
-			mysqli_close($connect);
-			header('Location: layout.html');
-			exit;
-		}
+	  }
+
+		$connection = (int)$_SESSION['user-connection'];
+		$type = "Insert question";
+		$date = date ("Y-m-d H:i:s");
+		$ip = $_SERVER['REMOTE_ADDR'];
+
+		$sql2 = "INSERT INTO ekintzak VALUES(0, $connection, '$email', '$type', '$date', '$ip')";
+		$query2 = mysqli_query($connect,$sql2);
+		if (!$query2){
+	    die('ERROR at query execution:' . mysqli_error($connect));
+	  }
+
+		mysqli_close($connect);
+		header('Location: layout.html');
+		exit;
 	}
  ?>

@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php
+session_start();
+if(isset($_SESSION['user-email'])){
+	die("You're already logged in. <a href='logout.php'>Log out</a> or <a href='layout.html'> go back</a>.");
+}	?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,14 +83,24 @@
                 $_SESSION['user-email'] = $email;
                 $_SESSION['user-firstname'] = $row['First name'];
                 $_SESSION['user-lastname'] =  $row['Last name'];
+
+								$date = date("Y-m-d H:i:s");
+								$sql2 = "INSERT INTO konexioak VALUES (0, '$email','$date')";
+								$query2 = mysqli_query($connect, $sql2);
+								$sql3 = "SELECT MAX(ID) FROM konexioak WHERE Email = '$email'";
+								$query3 = mysqli_query($connect,$sql3);
+								$row3 = mysqli_fetch_row($query3);
+
+								$_SESSION['user-connection'] = $row3[0];
+
                 header('Location: InsertQuestion.php');
                 exit;
               } else if($count == 0) {
-                $sql2 = "SELECT * FROM erabiltzailea WHERE Email = '$email'";
-                $query2 = mysqli_query($connect,$sql2);
-                $row2 = mysqli_fetch_array($query2,MYSQLI_ASSOC);
-                $count2 = mysqli_num_rows($query2);
-                if($count2 == 1){
+                $sql4 = "SELECT * FROM erabiltzailea WHERE Email = '$email'";
+                $query4 = mysqli_query($connect,$sql4);
+                $row4 = mysqli_fetch_array($query4,MYSQLI_ASSOC);
+                $count4 = mysqli_num_rows($query4);
+                if($count4 == 1){
                   echo "Password is incorrect.";
                 } else{
                   echo "This username doesn't exist.";
