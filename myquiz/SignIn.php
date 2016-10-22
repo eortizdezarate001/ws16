@@ -70,7 +70,7 @@ if(isset($_SESSION['user-email'])){
             if(isset($_POST["submit"])){
               include("connect.php");
 
-              $email = mysqli_real_escape_string($connect,$_POST['email']);
+						  $email = mysqli_real_escape_string($connect,$_POST['email']);
               $password = mysqli_real_escape_string($connect,$_POST['password']);
 
               $sql = "SELECT * FROM erabiltzailea WHERE Email = '$email' AND Password = '$password'";

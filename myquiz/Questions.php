@@ -37,12 +37,11 @@
       }
       a:link, a:visited{color: #0772C6; text-decoration:none}
       table	{border-collapse: collapse; width: 100%; }
-	     th		{text-align: center;padding: 8px; border-bottom: 1px solid #ddd;}
-	      td 		{padding: 8px; text-align: left; border-bottom: 1px solid #ddd;}
-	       tr:hover{background-color:#f5f5f5}
-         #tr1:hover{background-color: #ffffff};
-
-</style>
+	    th		{text-align: center;padding: 8px; border-bottom: 1px solid #ddd;}
+	    td 		{padding: 8px; text-align: left; border-bottom: 1px solid #ddd;}
+	    tr:hover{background-color:#f5f5f5}
+      #tr1:hover{background-color: #ffffff};
+    </style>
   </head>
   <body>
     <h1 id='header'> Questions </h1>

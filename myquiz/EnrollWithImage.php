@@ -20,7 +20,7 @@
     $spec = $_POST['specialty'];
   }
 
-  if(empty($email){
+  if(empty($email)){
     die('ERROR: Email must not be empty.');
   }
   if(filter_var($email, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]*[0-9]{3}@ikasle\.ehu\.e(u?)s/"))) === false) {

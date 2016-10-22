@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <assessmentItems>
 	<assessmentItem complexity="3" subject="mikologia">
-		<itemBody> 
+		<itemBody>
 			<p>Amanita muskaria zer da?</p>
 		</itemBody>
 		<correctResponse>
@@ -16,4 +16,13 @@
 			<value>Phalloides</value>
 		</correctResponse>
 	</assessmentItem>
-<assessmentItem complexity="4" subject="mikologia"><itemBody><p>Amanita cesarea jangarria da. Bai ala Ez?</p></itemBody><correctResponse><value>Bai</value></correctResponse></assessmentItem></assessmentItems>
+	<assessmentItem complexity="4" subject="mikologia">
+		<itemBody>
+			<p>Amanita cesarea jangarria da. Bai ala Ez?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Bai</value>
+		</correctResponse>
+	</assessmentItem>
+<assessmentItem complexity="4" subject="Drag"><itemBody><p>What queen have you chosen to get the chop?</p></itemBody><correctResponse><value>Roxxxy</value></correctResponse></assessmentItem>
+<assessmentItem complexity="2" subject="joanne"><itemBody><p>can you go a little faster?</p></itemBody><correctResponse><value>yas</value></correctResponse></assessmentItem></assessmentItems>
