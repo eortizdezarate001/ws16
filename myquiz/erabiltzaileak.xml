@@ -1,31 +1,21 @@
 ﻿<?xml version="1.0" ?>
 <erabiltzaileak>
 	<erabiltzailea>
-		<eposta>jmperez001@ikasle.ehu.eus</eposta>
-		<izena>Jon Mikel</izena>
-		<abizena1>Perez</abizena1>
-		<abizena2>Ledesma</abizena2>
-		<telefonoa>634232323</telefonoa>
+		<eposta>eneko111@ikasle.ehu.eus</eposta>
+		<izena>Eneko</izena>
+		<abizena>Ortiz de Zarate</abizena>
+		<telefonoa>654654654</telefonoa>
 	</erabiltzailea>
 	<erabiltzailea>
-		<eposta>lalkorta@ikasle.ehu.eus</eposta>
-		<izena>Luis</izena>
-		<abizena1>Alkorta</abizena1>
-		<abizena2>Bereziartua</abizena2>
-		<telefonoa>634232324</telefonoa>
+		<eposta>lcastillo111@ikasle.ehu.es</eposta>
+		<izena>Laurel</izena>
+		<abizena>Castillo</abizena>
+		<telefonoa>987987654</telefonoa>
 	</erabiltzailea>
 	<erabiltzailea>
-		<eposta>muribesalgo001@ikasle.ehu.eus</eposta>
-		<izena>Maddi</izena>
-		<abizena1>Uribesalgo</abizena1>
-		<abizena2>Lopez de Arriortua</abizena2>
-		<telefonoa>634232325</telefonoa>
-    </erabiltzailea>
-  <erabiltzailea>
-    <eposta>xalonso001@ikasle.ehu.eus</eposta>
-		<izena>Xabier</izena>
-		<abizena1>Alonso</abizena1>
-		<abizena2>Arrieta</abizena2>
-		<telefonoa>696756463</telefonoa>
+		<eposta>post123@ikasle.ehu.es</eposta>
+		<izena>Post</izena>
+		<abizena>Poos Osrrt</abizena>
+		<telefonoa>654987654</telefonoa>
   </erabiltzailea>
 </erabiltzaileak>
