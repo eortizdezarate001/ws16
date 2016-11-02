@@ -92,7 +92,7 @@ if(isset($_SESSION['user-email'])){
 
 								$_SESSION['user-connection'] = $row3[0];
 
-                header('Location: InsertQuestion.php');
+                header('Location: layout.html');
                 exit;
               } else if($count == 0) {
                 $sql4 = "SELECT * FROM erabiltzailea WHERE Email = '$email'";

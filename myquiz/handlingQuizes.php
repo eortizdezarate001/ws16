@@ -10,6 +10,10 @@
 		#header  {
 			font-size: 300%; text-align: center; font-weight: 100;
 		}
+		#count {
+			margin-bottom: 12px;
+			font-size: 110%;
+		}
 		#main {
 			max-width: 350px;
 			padding-left: 12px;
@@ -61,6 +65,7 @@
 		tr:hover{background-color:#f5f5f5}
 		#tr1:hover{background-color: #ffffff};
 	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script type="text/javascript">
     xhttp1 = new XMLHttpRequest();
     xhttp1.onreadystatechange= function(){
@@ -128,7 +133,17 @@
 			xhttp3.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 			xhttp3.send("question="+question+"&answer="+answer+"&subject="+subject+"&difficulty="+difficulty);
 		}
-  </script>
+
+		window.onload = function(){load();};
+		function refresh(){
+			$("#questioncount").load("handlingQuizes-questionCount.php");
+		}
+		function load(){
+			refresh();
+			setInterval(refresh,5000);
+		}
+
+	</script>
 </head>
 <?php
 	if(isset($_SESSION['user-email'])){
@@ -138,8 +153,11 @@
 	}
 ?>
 <body>
-    <h1 id="header"> Handle your questions</h1>
+    <h1 id="header">Handle your questions</h1>
 		<div id="main">
+			<div id="count">
+				My questions/Total questions : <span id="questioncount"></span>
+			</div>
       <input class="button" type="button" id="addquestion" name="addquestion" value="Add question" onclick="addQuestion()">
       <input class="button" type="button" id="showquestions" name="showquestions" value="Show my questions" onclick="	showQuestions()"><br>
       <div class="form-group" id="div-addquestion" style="display:none"></div>
