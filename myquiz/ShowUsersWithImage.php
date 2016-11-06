@@ -3,11 +3,9 @@
   $sql = "SELECT * FROM erabiltzailea";
   $query = mysqli_query($connect,$sql);
 
-  echo "<h1 align=center>Quiz database: Erabiltzaileak</h1>";
+  echo "<p><a href='layout.html'>Home</a></p>";
 
-  echo "<form action='layout.html'>
-        <input type='submit' value='Go back'>
-        </form>";
+  echo "<h1 align=center>Quiz database: Erabiltzaileak</h1>";
 
   echo "<table border=2 align=center cellpadding=5>
         <tr><th>First name</th><th>Last name</th><th>Email</th><th>Phone</th><th>Specialty</th><th>Interests</th><th>Image</th></tr>";
