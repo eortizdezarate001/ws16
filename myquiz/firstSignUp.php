@@ -133,7 +133,7 @@
 				<div class="form-wrap">
 					<label for="pass">Password</label>
 					<div class="form-input" id="wrap-pass">
-						<input class="element" type="password" id="pass" name="pass" onchange="pasahitza()">
+						<input class="element" type="password" id="pass" name="password" onchange="pasahitza()">
 					</div>
 				</div>
 				<input class="button" type="submit" id="submit" style="margin-bottom: 5px" disabled value="Sign up">

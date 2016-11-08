@@ -4,7 +4,7 @@
 
   $client = new nusoap_client('http://localhost:1234/ws16/myquiz/egiaztatuPasahitzaZerb.php?wsdl', true);
 
-  $result = $client->call('egiaztatuPasahitza',array('x'=>$_POST['pass']));
+  $result = $client->call('egiaztatuPasahitza',array('x'=>$_POST['password']));
   echo $result;
 
 ?>

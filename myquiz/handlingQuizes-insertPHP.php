@@ -33,7 +33,7 @@
     $xml->asXML($file);
 
     echo "Your question was added successfully.<br>";
-    echo "<a href='seeXMLQuestions.php'>See questions.</a>";
+    echo "<a href='Questions.php'>See questions.</a>";
 
     // EKINTZA
     $connection = (int)$_SESSION['user-connection'];
