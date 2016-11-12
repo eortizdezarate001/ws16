@@ -1,5 +1,5 @@
 <?php
-  include("connect.php");
+  include('connect.php');
   $sql = "SELECT * FROM erabiltzailea";
   $query = mysqli_query($connect,$sql);
 

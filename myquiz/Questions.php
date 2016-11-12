@@ -1,7 +1,5 @@
 <?php
-
-  session_start();
-  include("connect.php");
+  include('connect.php');
 
   $sql = "SELECT * FROM galderak";
   $query = mysqli_query($connect,$sql);
@@ -35,29 +33,35 @@
         font-size: 300%; text-align: center; font-weight: 100;
         padding-top: 20px;
       }
+      #question-table {margin-top: -30px;}
       a:link, a:visited{color: #0772C6; text-decoration:none}
       table	{border-collapse: collapse; width: 100%; }
 	    th		{text-align: center;padding: 8px; border-bottom: 1px solid #ddd;}
-	    td 		{padding: 8px; text-align: left; border-bottom: 1px solid #ddd;}
+	    td 		{padding: 8px; text-align: center; border-bottom: 1px solid #ddd;}
+      .q {text-align: left; border-right: 1px solid #ddd;;}
 	    tr:hover{background-color:#f5f5f5}
       #tr1:hover{background-color: #ffffff};
     </style>
   </head>
   <body>
-    <h1 id='header'> Questions </h1>
-    <table>
-      <tr id='tr1'>
-        <th width='85%'>Question</th>
-        <th width='15%'>Difficulty</th>
-      </tr>
-      <?php
-        while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)){
-          echo "<tr>";
-          echo "<td>".$row['Question']."</td>";
-          echo "<td>".$row['Difficulty']."</td>";
-          echo "</tr>";
-        }
-      ?>
-    </table>
+    <div id="question-table">
+      <h1 id='header'> Questions </h1>
+      <table>
+        <tr id='tr1'>
+          <th width='65%'>Question</th>
+          <th width='5%'>Difficulty</th>
+          <th width='20%'>Subject</th>
+        </tr>
+        <?php
+          while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)){
+            echo "<tr>";
+            echo "<td class='q'>".$row['Question']."</td>";
+            echo "<td>".$row['Difficulty']."</td>";
+            echo "<td>".$row['Subject']."</td>";
+            echo "</tr>";
+          }
+        ?>
+      </table>
+    </div>
   </body>
 </html>

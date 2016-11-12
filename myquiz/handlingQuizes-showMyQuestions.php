@@ -1,6 +1,7 @@
 <?php
   session_start();
-  include("connect.php");
+  include('security.php');
+  include('connect.php');
 
   $email = mysqli_real_escape_string($connect,$_SESSION['user-email']);
 

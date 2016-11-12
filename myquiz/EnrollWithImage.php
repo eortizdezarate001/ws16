@@ -1,5 +1,7 @@
 <?php
-  include("connect.php");
+  session_start();
+  include('security.php');
+  include('connect.php');
 
   if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
     $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));

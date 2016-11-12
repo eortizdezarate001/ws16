@@ -1,5 +1,7 @@
 <?php
-  include("connect.php");
+  session_start();
+  include('security.php');
+  include('connect.php');
 
   if(empty($_POST['email'])){
     die('ERROR: Email must not be empty.');

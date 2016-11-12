@@ -121,7 +121,7 @@
 	</head>
 	<body>
 		<p align="right"><a href="layout.html">Home</a></p>
-		<form action="signUp.html" id="erregistro" name="erregistro" method="post">
+		<form action="signUp.php" id="erregistro" name="erregistro" method="post">
 			<div id="main">
 				<h1 id="header">Sign up</h1>
 				<div class="form-wrap">

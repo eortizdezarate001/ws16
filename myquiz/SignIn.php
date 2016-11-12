@@ -1,8 +1,4 @@
-<?php
-session_start();
-if(isset($_SESSION['user-email'])){
-	die("You're already logged in. <a href='logout.php'>Log out</a> or <a href='layout.html'> go back</a>.");
-}	?>
+<?php session_start();	?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,6 +54,10 @@ if(isset($_SESSION['user-email'])){
   	}
 	</style>
 </head>
+<?php
+if(isset($_SESSION['user-email'])){
+	die("You're already logged in. <a href='logout.php'>Log out</a> or <a href='layout.html'> go back</a>.");
+} ?>
 <body>
   <form action="SignIn.php" id="login" name="login" method="post">
   	<div id="main">
@@ -68,7 +68,7 @@ if(isset($_SESSION['user-email'])){
           <!-- php code -->
           <?php
             if(isset($_POST["submit"])){
-              include("connect.php");
+              include('connect.php');
 
 						  $email = mysqli_real_escape_string($connect,$_POST['email']);
               $password = mysqli_real_escape_string($connect,$_POST['password']);
@@ -82,6 +82,7 @@ if(isset($_SESSION['user-email'])){
                 $_SESSION['user-email'] = $email;
                 $_SESSION['user-firstname'] = $row['First name'];
                 $_SESSION['user-lastname'] =  $row['Last name'];
+								$_SESSION['auth'] = "YES";
 
 								$date = date("Y-m-d H:i:s");
 								$sql2 = "INSERT INTO konexioak VALUES (0, '$email','$date')";
@@ -92,7 +93,11 @@ if(isset($_SESSION['user-email'])){
 
 								$_SESSION['user-connection'] = $row3[0];
 
-                header('Location: layout.html');
+								if($email == "web000@ehu.es"){
+									header('Location: reviewingQuizes.php');
+								} else{
+									header('Location: handlingQuizes.php');
+								}
                 exit;
               } else if($count == 0) {
                 $sql4 = "SELECT * FROM erabiltzailea WHERE Email = '$email'";
@@ -119,7 +124,7 @@ if(isset($_SESSION['user-email'])){
         <input class="button" type="submit" id='button' name="submit" value="Sign in">
         <br>
   			<br>
-  		  <p>No account? <a href='signUp.html'>Create one!</a><br>
+  		  <p>No account? <a href='signUp.php'>Create one!</a><br>
           <a href="layout.html">Go back</a>
         </p>
       </div>

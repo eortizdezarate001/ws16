@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php   session_start(); include('securityH.php');?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,13 +57,7 @@
 
 	</style>
 </head>
-<?php
-	if(isset($_SESSION['user-email'])){
-		echo "<p align='right'>Hello, ".$_SESSION['user-firstname']." ".$_SESSION['user-lastname']." | <a href='layout.html'>Home</a> (<a href='logout.php'>logout</a>)</p>";
-	} else {
-		die("You need to <a href='SignIn.php'>sign in</a> to access this content.");
-	}
-?>
+
 <body>
 	<form action="InsertQuestion.php" id="question" name="question" method="post">
 		<div id="main">
@@ -93,7 +87,7 @@
 				<div class="form-php"><p><!-- php kodea -->
 					<?php
 						if(isset($_POST["submit"])){
-							include("connect.php");
+							include('connect.php');
 
 							$question = mysqli_real_escape_string($connect,$_POST['question']);
 							$answer = mysqli_real_escape_string($connect,$_POST['answer']);

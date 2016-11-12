@@ -123,6 +123,13 @@
 								if(response == "BALIOZKOA"){
 									$('#wrap-pass').css("border-color","#00cc00");
 									passB=true;
+									if($('#pass2').val() === $('#pass').val()){
+										$('#wrap-pass2').css("border-color","#00cc00");
+									} else if($('#pass2').val() == ""){
+										$('#wrap-pass2').css("border-color","rgba(0, 0, 0, 0.4)");
+									} else{
+										$('#wrap-pass2').css("border-color","#cc0000");
+									}
 								} else if(response == "BALIOGABEA"){
 									$('#wrap-pass').css("border-color","#cc0000");
 									passB=false;
@@ -170,6 +177,12 @@
 					<label for="pass">Password<font color="red">*</font></label>
 					<div class="form-input" id="wrap-pass">
 						<input class="element" type="password" id="pass" name="password" onchange="pasahitza()">
+					</div>
+				</div>
+				<div class="form-wrap">
+					<label for="pass2">Repeat password<font color="red">*</font></label>
+					<div class="form-input" id="wrap-pass2">
+						<input class="element" type="password" id="pass2" name="password2" onchange="pasahitza()">
 					</div>
 				</div>
 				<div class="form-wrap">

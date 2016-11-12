@@ -1,6 +1,7 @@
 <?php
   session_start();
-  include("connect.php");
+  include('security.php');
+  include('connect.php');
 
   $myemail = mysqli_real_escape_string($connect,$_SESSION['user-email']);
   $sql1 = "SELECT COUNT(*) FROM galderak WHERE Email='$myemail'";

@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start(); include('security.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,16 +122,21 @@
 			var answer = document.getElementById("answer").value;
 			var subject = document.getElementById("subject").value;
 			var diff = document.getElementsByName("difficulty");
-			var difficulty="";
-			for(var i=0;i<5;i++){
-				if(diff[i].checked){
-					difficulty = diff[i].value;
+			if(question !== "" && answer !== ""){
+				document.getElementById("div-php").innerHTML = "...";
+				var difficulty="";
+				for(var i=0;i<5;i++){
+					if(diff[i].checked){
+						difficulty = diff[i].value;
+					}
 				}
-			}
 
-			xhttp3.open("POST","handlingQuizes-insertPHP.php");
-			xhttp3.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			xhttp3.send("question="+question+"&answer="+answer+"&subject="+subject+"&difficulty="+difficulty);
+				xhttp3.open("POST","handlingQuizes-insertPHP.php");
+				xhttp3.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				xhttp3.send("question="+question+"&answer="+answer+"&subject="+subject+"&difficulty="+difficulty);
+			} else{
+				document.getElementById("div-php").innerHTML = "<font color='black'>Question or Answer fields are empty.</font>";
+			}
 		}
 
 		window.onload = function(){load();};
@@ -145,13 +150,7 @@
 
 	</script>
 </head>
-<?php
-	if(isset($_SESSION['user-email'])){
-		echo "<p align='right'>Hello, ".$_SESSION['user-firstname']." ".$_SESSION['user-lastname']." | <a href='layout.html'>Home</a> (<a href='logout.php'>logout</a>)</p>";
-	} else {
-		die("You need to <a href='SignIn.php'>sign in</a> to access this content.");
-	}
-?>
+
 <body>
     <h1 id="header">Handle your questions</h1>
 		<div id="main">
