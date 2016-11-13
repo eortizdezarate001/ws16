@@ -14,6 +14,7 @@
     $email = "'".$_SESSION['user-email']."'";
     $sql2 = "INSERT INTO ekintzak VALUES(0, $connection, $email, '$type', '$date', '$ip')";
   } else{
+    echo "<p align='right'><a href='layout.html'>Home</a></p>";
     $sql2 = "INSERT INTO ekintzak (`Type`, `Time`, `IP`) VALUES('$type', '$date', '$ip')";
   }
   $query2 = mysqli_query($connect,$sql2);

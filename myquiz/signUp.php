@@ -146,6 +146,7 @@
 			function resetColors(){
 				$('#wrap-email').css("border-color","rgba(0, 0, 0, 0.4)");
 				$('#wrap-pass').css("border-color","rgba(0, 0, 0, 0.4)");
+				$('#wrap-pass2').css("border-color","rgba(0, 0, 0, 0.4)");
 			}
 
     </script>
