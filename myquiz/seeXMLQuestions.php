@@ -1,5 +1,5 @@
 <?php
-  echo "<p align='right'><a href='layout.html'>Home</a></p>";
+  echo "<p align='right'><a href='layout.php'>Home</a></p>";
   $xslDoc = new DOMDocument();
   $xslDoc->load("seeQuestions.xsl");
   $xmlDoc = new DOMDocument();

@@ -5,17 +5,16 @@
 	<meta charset="utf-8">
 	<title>Sign in</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
+	<script type="text/javascript" src="functions.js" charset="utf-8"></script>
+	<link rel="stylesheet" href="./css/bootstrap.min.css"/>
 	<style>
-    body	  {font-family: 'Roboto', sans-serif; font-weight: 400;}
   	#header  {
       font-size: 300%; text-align: center; font-weight: 100;
-      padding-top: 20px;
     }
     #main {
       max-width: 350px;
       padding-left: 12px;
       padding-right: 12px;
-      min-height: 400px;
       width: 100%;
       margin: 0 auto;
       text-align: center;
@@ -29,7 +28,7 @@
       border-color: rgba(0, 0, 0, 0.4);
       border-style: solid;
       border-width: 2px;
-      height: 1rem;
+      height: 2.2rem;
       padding: 4px 8px 8px;
     }
     input.login 	{
@@ -53,12 +52,46 @@
   		border-color:rgb(8,79,138);
   	}
 	</style>
+	<link rel="stylesheet" href="./css/style.css" />
+	<script src="./js/jquery-3.1.1.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
 </head>
 <?php
 if(isset($_SESSION['user-email'])){
-	die("You're already logged in. <a href='logout.php'>Log out</a> or <a href='layout.html'> go back</a>.");
+	die("You're already logged in. <a href='logout.php'>Log out</a> or <a href='layout.php'> go back</a>.");
 } ?>
 <body>
+	<nav class="navbar navbar-inverse" style="border-radius:0px">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="layout.php">Quizes</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Questions
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="Questions.php">Show questions</a></li>
+						</ul>
+					</li>
+					<li><a href="getUserInform.php">Get user information</a></li>
+					<li><a href="credits.html"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+						<li><a href="signUp.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+						<li class="active"><a href="SignIn.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
   <form action="SignIn.php" id="login" name="login" method="post">
   	<div id="main">
   		<h1 id='header'> Sign In </h1>
@@ -93,11 +126,7 @@ if(isset($_SESSION['user-email'])){
 
 								$_SESSION['user-connection'] = $row3[0];
 
-								if($email == "web000@ehu.es"){
-									header('Location: reviewingQuizes.php');
-								} else{
-									header('Location: handlingQuizes.php');
-								}
+								header('Location: layout.php');
                 exit;
               } else if($count == 0) {
                 $sql4 = "SELECT * FROM erabiltzailea WHERE Email = '$email'";
@@ -124,9 +153,7 @@ if(isset($_SESSION['user-email'])){
         <input class="button" type="submit" id='button' name="submit" value="Sign in">
         <br>
   			<br>
-  		  <p>No account? <a href='signUp.php'>Create one!</a><br>
-          <a href="layout.html">Go back</a>
-        </p>
+  		  <p>No account? <a href='signUp.php'>Create one!</a></p>
       </div>
   	</div>
   </form>

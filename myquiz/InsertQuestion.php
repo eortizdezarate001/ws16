@@ -134,7 +134,7 @@
 
 
 							mysqli_close($connect);
-							//header('Location: layout.html');
+							//header('Location: layout.php');
 							exit;
 						}
 					 ?>

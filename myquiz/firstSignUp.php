@@ -120,7 +120,7 @@
     </script>
 	</head>
 	<body>
-		<p align="right"><a href="layout.html">Home</a></p>
+		<p align="right"><a href="layout.php">Home</a></p>
 		<form action="signUp.php" id="erregistro" name="erregistro" method="post">
 			<div id="main">
 				<h1 id="header">Sign up</h1>

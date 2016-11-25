@@ -5,14 +5,12 @@
 		<title>Sign up</title>
 		<link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
 		<script type="text/javascript" src="functions.js" charset="utf-8"></script>
+		<link rel="stylesheet" href="./css/bootstrap.min.css"/>
 		<style>
-			body	  {font-family: 'Roboto', sans-serif; font-weight: 400;}
 	  	#header  {
 	      font-size: 300%; text-align: center; font-weight: 100;
 	    }
-			#erregistro {
-				margin-top: -50px;
-			}
+
 	    #main {
 	      max-width: 350px;
 	      padding-left: 12px;
@@ -31,7 +29,7 @@
 	      border-color: rgba(0, 0, 0, 0.4);
 	      border-style: solid;
 	      border-width: 2px;
-	      height: 1rem;
+	      height: 2.2rem;
 	      padding: 4px 8px 8px;
 	    }
 	    input.element	{
@@ -61,7 +59,7 @@
 			}
 	    a:link, a:visited{color: #0772C6; text-decoration:none}
 	  	.button {
-	      width: 49.4%;
+	      width: 49.3%;
 	      height:35px;
 	      background-color: rgb(19,122,212);
 	      font-size: 100%;
@@ -78,7 +76,9 @@
 			}
 
 		</style>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="./css/style.css" />
+		<script src="./js/jquery-3.1.1.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
     <script type="text/javascript">
 			var emailB = false;
 			var passB = false;
@@ -152,7 +152,37 @@
     </script>
 	</head>
 	<body>
-		<p align="right"><a href="layout.html">Home</a></p>
+		<nav class="navbar navbar-inverse" style="border-radius:0px">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="layout.php">Quizes</a>
+		    </div>
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		      <ul class="nav navbar-nav">
+		        <li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+		        <li class="dropdown">
+		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Questions
+		          <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="Questions.php">Show questions</a></li>
+		          </ul>
+		        </li>
+		        <li><a href="getUserInform.php">Get user information</a></li>
+		        <li><a href="credits.html"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+		          <li class="active"><a href="signUp.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		          <li><a href="SignIn.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
+
 		<form action="EnrollWithImage.php" id="erregistro" name="erregistro" onSubmit="return validation()" method="post" enctype="multipart/form-data">
 			<div id="main">
 				<h1 id="header">Sign up</h1>

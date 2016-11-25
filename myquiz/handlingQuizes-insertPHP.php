@@ -19,20 +19,6 @@
     die('ERROR at query execution:' . mysqli_error($connect));
   }
 
-  // ADD TO XML FILE
-  $file = 'galderak.xml';
-  $xml = simplexml_load_file($file);
-
-  $assessmentItem = $xml->addChild('assessmentItem');
-  $assessmentItem->addAttribute('complexity', $difficulty);
-  $assessmentItem->addAttribute('subject',$subject);
-  $itemBody = $assessmentItem->addChild('itemBody');
-  $itemBody->addChild('p',$question);
-  $correctResponse = $assessmentItem->addChild('correctResponse');
-  $correctResponse->addChild('value', $answer);
-
-  $xml->asXML($file);
-
   echo "Your question was added successfully.<br>";
   echo "<a href='Questions.php'>See questions.</a>";
 

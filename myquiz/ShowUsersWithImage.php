@@ -3,7 +3,7 @@
   $sql = "SELECT * FROM erabiltzailea";
   $query = mysqli_query($connect,$sql);
 
-  echo "<p><a href='layout.html'>Home</a></p>";
+  echo "<p><a href='layout.php'>Home</a></p>";
 
   echo "<h1 align=center>Quiz database: Erabiltzaileak</h1>";
 

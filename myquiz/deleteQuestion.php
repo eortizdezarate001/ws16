@@ -2,7 +2,7 @@
   session_start();
   include('security.php');
   if($_SESSION['user-email'] !== 'web000@ehu.es'){
-    header("Location: layout.html");
+    header("Location: layout.php");
   }
   include('connect.php');
 

@@ -5,8 +5,8 @@
 	<meta charset="utf-8">
 	<title>Handle questions</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
+	<link rel="stylesheet" href="./css/bootstrap.min.css"/>
 	<style>
-		body	  {font-family: 'Roboto', sans-serif; font-weight: 400;}
 		#header  {
 			font-size: 300%; text-align: center; font-weight: 100;
 		}
@@ -32,7 +32,7 @@
 			border-color: rgba(0, 0, 0, 0.4);
 			border-style: solid;
 			border-width: 2px;
-			height: 1rem;
+			height: 2.2rem;
 			padding: 4px 8px 8px;
 		}
 		input.q-a 	{
@@ -46,6 +46,9 @@
 			margin-bottom: 12px;
 		}
 		a:link, a:visited{color: #0772C6; text-decoration:none}
+		button {
+			cursor: default!important;
+		}
 		.button {
 			width: 100%;
 			height:35px;
@@ -65,7 +68,9 @@
 		tr:hover{background-color:#f5f5f5}
 		#tr1:hover{background-color: #ffffff};
 	</style>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="./css/style.css" />
+	<script src="./js/jquery-3.1.1.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
   <script type="text/javascript">
     xhttp1 = new XMLHttpRequest();
     xhttp1.onreadystatechange= function(){
@@ -152,16 +157,65 @@
 </head>
 
 <body>
-    <h1 id="header">Handle your questions</h1>
-		<div id="main">
-			<div id="count">
-				My questions/Total questions : <span id="questioncount"></span>
-			</div>
-      <input class="button" type="button" id="addquestion" name="addquestion" value="Add question" onclick="addQuestion()">
-      <input class="button" type="button" id="showquestions" name="showquestions" value="Show my questions" onclick="	showQuestions()"><br>
-      <div class="form-group" id="div-addquestion" style="display:none"></div>
-      <div class="form-php" id="div-php" style="display:none"></div>
-      <div class="form-group" id="div-showquestions" style="display:none"></div>
+	<nav class="navbar navbar-inverse" style="border-radius:0px">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="layout.php">Quizes</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+	        <li class="dropdown active">
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Questions
+	          <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="Questions.php">Show questions</a></li>
+	            <?php if(isset($_SESSION['auth'])){ ?>
+	              <li><a href="handlingQuizes.php">Handle questions</a></li>
+	            <?php } ?>
+	            <?php if(isset($_SESSION['auth']) && $_SESSION['user-email']==='web000@ehu.es'){ ?>
+	              <li><a href="reviewingQuizes.php">Review questions</a></li>
+	            <?php } ?>
+	          </ul>
+	        </li>
+	        <li><a href="getUserInform.php">Get user information</a></li>
+	        <li><a href="credits.html"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <?php if(!isset($_SESSION['auth'])){ ?>
+	          <li><a href="signUp.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	          <li><a href="SignIn.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	        <?php } else if(isset($_SESSION['auth'])){ ?>
+	          <li class="dropdown">
+	            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>
+	            <?php echo $_SESSION['user-firstname'].' '.$_SESSION['user-lastname']; ?>
+	            <span class="caret"></span></a>
+	            <ul class="dropdown-menu">
+	              <li><a href="#">Settings</a></li>
+	              <li><a href="logout.php">Logout</a></li>
+	            </ul>
+	          </li>
+	          <?php } ?>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+
+  <h1 id="header">Handle your questions</h1>
+	<div id="main">
+		<div id="count">
+			My questions/Total questions : <span id="questioncount"></span>
 		</div>
+    <input class="button" type="button" id="addquestion" name="addquestion" value="Add question" onclick="addQuestion()">
+    <input class="button" type="button" id="showquestions" name="showquestions" value="Show my questions" onclick="	showQuestions()"><br>
+    <div class="form-group" id="div-addquestion" style="display:none"></div>
+    <div class="form-php" id="div-php" style="display:none"></div>
+    <div class="form-group" id="div-showquestions" style="display:none"></div>
+	</div>
 </body>
 </html>

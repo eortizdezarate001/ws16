@@ -1,6 +1,4 @@
 <?php
-  session_start();
-  include('security.php');
   include('connect.php');
 
   if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {

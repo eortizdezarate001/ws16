@@ -1,6 +1,6 @@
 <?php
   if(!isset($_SESSION['auth'])){
-    header('Location: layout.html');
+    header('Location: layout.php');
     exit();
   }
 
