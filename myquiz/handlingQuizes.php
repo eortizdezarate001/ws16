@@ -72,75 +72,57 @@
 	<script src="./js/jquery-3.1.1.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
   <script type="text/javascript">
-    xhttp1 = new XMLHttpRequest();
-    xhttp1.onreadystatechange= function(){
-       if((xhttp1.readyState==4)&&(xhttp1.status==200)){
-         var obj = document.getElementById("div-addquestion");
-         obj.innerHTML = xhttp1.responseText;
-       }
-    }
-    xhttp2 = new XMLHttpRequest();
-    xhttp2.onreadystatechange=function(){
-			if((xhttp2.readyState==4)&&(xhttp2.status==200)){
-				var obj = document.getElementById("div-showquestions");
-				obj.innerHTML = xhttp2.responseText;
-			}
-    }
-		xhttp3 = new XMLHttpRequest();
-    xhttp3.onreadystatechange=function(){
-			if((xhttp3.readyState==4)&&(xhttp3.status==200)){
-				var obj = document.getElementById("div-php");
-				obj.innerHTML = xhttp3.responseText;
-			}
-    }
-
 		function addQuestion(){
-			document.getElementById("div-showquestions").style.display="none";
-			var div = document.getElementById("div-addquestion");
-			if(div.style.display=="none"){
-				div.style.display="block";
-				document.getElementById("div-php").innerHTML="";
-				document.getElementById("div-php").style.display="block";
-				xhttp1.open("GET","handlingQuizes-insertQuestion.txt");
-	      xhttp1.send(null);
-			} else if(div.style.display=="block"){
-				div.style.display="none";
-				document.getElementById("div-php").style.display="none";
-				document.getElementById("div-php").innerHTML="";
+			$('#div-showquestions').css('display','none');
+			if($('#div-addquestion').css('display') == 'none'){
+				$('#div-addquestion').css('display','block');
+				$('#div-php').empty();
+				$('#div-php').css('display','block');
+				$('#div-addquestion').load("handlingQuizes-insertQuestion.txt");
+			} else if($('#div-addquestion').css('display') == 'block'){
+				$('#div-addquestion').css('display','none');
+				$("#div-php").css('display','none');
+				$("#div-php").empty();
 			}
 		}
 		function showQuestions(){
-			document.getElementById("div-addquestion").style.display="none";
-			document.getElementById("div-php").style.display="none";
-			document.getElementById("div-php").innerHTML="";
-			var div = document.getElementById("div-showquestions");
-			if(div.style.display=="none"){
-				div.style.display="block";
-				xhttp2.open("GET","handlingQuizes-showMyQuestions.php");
-	      xhttp2.send(null);
-			} else if(div.style.display=="block"){
-				div.style.display="none";
+			$("#div-addquestion").css('display','none');
+			$("#div-php").css('display','none');
+			$("#div-php").empty();
+			if($('#div-showquestions').css('display') == 'none'){
+				$('#div-showquestions').css('display','block');
+				$('#div-showquestions').load("handlingQuizes-showMyQuestions.php");
+			} else if($('#div-showquestions').css('display') == 'block'){
+				$('#div-showquestions').css('display','none');
 			}
 		}
 		function submitForm(){
-			var question = document.getElementById("question").value;
-			var answer = document.getElementById("answer").value;
-			var subject = document.getElementById("subject").value;
+			var question = $("#question").val();
+			var answer = $("#answer").val();
+			var subject = $("#subject").val();
 			var diff = document.getElementsByName("difficulty");
 			if(question !== "" && answer !== ""){
-				document.getElementById("div-php").innerHTML = "...";
+				$("#div-php").html("...");
 				var difficulty="";
 				for(var i=0;i<5;i++){
 					if(diff[i].checked){
 						difficulty = diff[i].value;
 					}
 				}
-
-				xhttp3.open("POST","handlingQuizes-insertPHP.php");
-				xhttp3.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-				xhttp3.send("question="+question+"&answer="+answer+"&subject="+subject+"&difficulty="+difficulty);
+				$.post(
+					"handlingQuizes-insertPHP.php",
+					{
+						question: question,
+						answer: answer,
+						subject: subject,
+						difficulty: difficulty
+					},
+					function(result){
+						$('#div-php').html(result);
+					}
+				);
 			} else{
-				document.getElementById("div-php").innerHTML = "<font color='black'>Question or Answer fields are empty.</font>";
+				$("#div-php").html("<font color='black'>Question or Answer fields are empty.</font>");
 			}
 		}
 
@@ -184,7 +166,7 @@
 	          </ul>
 	        </li>
 	        <li><a href="getUserInform.php">Get user information</a></li>
-	        <li><a href="credits.html"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
+	        <li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	        <?php if(!isset($_SESSION['auth'])){ ?>

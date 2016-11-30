@@ -1,8 +1,8 @@
 <?php
   include('connect.php');
 
-  if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
-    $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+  if (isset($_FILES['avatar-1']) && $_FILES['avatar-1']['size'] > 0) {
+    $image = addslashes(file_get_contents($_FILES['avatar-1']['tmp_name']));
   } else{
     $image = "";
   }
@@ -39,9 +39,11 @@
     die('Password length must be higher than 6.');
   }
 
+  $enct = sha1($password);
+
 
   $sql = "INSERT INTO erabiltzailea
-          VALUES ('$firstname','$lastname','$email','$password','$phone','$spec','$interests','$image')";
+          VALUES ('$firstname','$lastname','$email','$enct','$phone','$spec','$interests','$image')";
   $query = mysqli_query($connect,$sql);
   if (!$query){
     die('ERROR at query execution:' . mysqli_error($connect));

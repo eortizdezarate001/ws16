@@ -7,16 +7,6 @@
   <title>Quizzes</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
   <link rel="stylesheet" href="./css/bootstrap.min.css" />
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif!important;
-    }
-    h1  {
-      font-family: 'Roboto', sans-serif!important;
-      font-weight: 100!important;
-    }
-
-  </style>
   <link rel="stylesheet" href="./css/style.css" />
   <script src="./js/jquery-3.1.1.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
@@ -50,7 +40,7 @@
             </ul>
           </li>
           <li><a href="getUserInform.php">Get user information</a></li>
-          <li><a href="credits.html"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
+          <li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <?php if(!isset($_SESSION['auth'])){ ?>
@@ -77,9 +67,6 @@
     </div>
   </div>
   <footer>
-<!--    <div class="navbar navbar-inverse navbar-static-bottom" style="border-radius:0px">
-      <a href='https://github.com/eortizdezarate001/ws16' target="_blank">Link GITHUB</a>
-    </div>-->
     <div class="navbar navbar-inverse navbar-fixed-bottom" style="border-radius:0px">
       <div class="container">
           <div class="navbar-collapse collapse" id="footer-body">

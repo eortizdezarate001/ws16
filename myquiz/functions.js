@@ -28,12 +28,11 @@ function validation(){
   var s = "";
   var b=false;
   var f=document.getElementById("erregistro");
-  for(i=0;i<5;i++){
-    if(f.elements[i].value==""){
-      s += f.elements[i].name + " is empty!\n";
-      b=true;
+  $('.compulsory').each(function(i){
+    if($(this).val()==""){
+      s += $(this).attr('name') + " is empty!\n";
     }
-  }
+  });
   if(b==true) alert(s);
   else if(document.getElementById("pass").value.length<6)
     alert("Password needs at least 6 characters.");
@@ -62,7 +61,7 @@ function addTextField(){
   var text = document.createElement("input");
     text.type = "text";
     text.name = "others";
-    text.className = "element";
+    text.className = "form-control";
   div.appendChild(text);
   }
   else{
@@ -71,17 +70,4 @@ function addTextField(){
       element.removeChild(element.firstChild);
     }
   }
-}
-
-function readURL(input) {
-  if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-          $("#pic")
-          .attr("src", e.target.result)
-          //.width(150)
-          .height(200);
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
 }

@@ -74,7 +74,7 @@
               </ul>
             </li>
             <li><a href="getUserInform.php">Get user information</a></li>
-            <li><a href="credits.html"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
+            <li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <?php if(!isset($_SESSION['auth'])){ ?>
