@@ -57,13 +57,13 @@ if(isset($_SESSION['user-email'])){
 				<ul class="nav navbar-nav">
 					<li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Questions
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Questions
 						<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="Questions.php">Show questions</a></li>
 						</ul>
 					</li>
-					<li><a href="getUserInform.php">Get user information</a></li>
+					<li><a href="getUserInform.php"><span class="glyphicon glyphicon-search"></span> Get user information</a></li>
 					<li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -80,10 +80,10 @@ if(isset($_SESSION['user-email'])){
 		</div>
 		<div class="row">
 			<div class="col-sm-4 col-sm-offset-4">
-				<div class="social-buttons" align="center">
+				<!--<div class="social-buttons" align="center">
 					<a href="#" class="btn btn-fb"> <i class="fa fa-facebook fa-lg" style="vertical-align: middle; padding:3px;"></i> Login with Facebook</a>
 					<a href="#" class="btn btn-tw"><i class="fa fa-twitter fa-lg" style="vertical-align: middle; padding:3px;"></i> Login with Twitter</a>
-				</div>
+				</div>-->
 				<form action="SignIn.php" id="login" name="login" method="post">
 	        <div class="form-php">
 	          <p style="margin-bottom:5px">
@@ -136,10 +136,10 @@ if(isset($_SESSION['user-email'])){
 	          ?></p>
 	        </div>
 					<div class="form-group">
-	          <input class="form-control" type="email" name="email" id="email" placeholder="Email" required autofocus>
+	          <input class="form-control" type="email" name="email" id="email" placeholder="Email" required autofocus autocomplete="off">
 	        </div>
 	        <div class="form-group">
-	          <input class="form-control" type="password" name="password" id="password" placeholder="Password" required>
+	          <input class="form-control" type="password" name="password" id="password" placeholder="Password" required autocomplete="off">
 	        </div>
 					<div class="checkbox">
 						<label><input type="checkbox"> Remember me</label>

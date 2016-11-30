@@ -7,47 +7,21 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
 	<link rel="stylesheet" href="./css/bootstrap.min.css"/>
 	<style>
-		#header  {
-			font-size: 300%; text-align: center; font-weight: 100;
-		}
 		#count {
 			margin-bottom: 12px;
 			font-size: 110%;
 		}
-		#main {
-			max-width: 350px;
-			padding-left: 12px;
-			padding-right: 12px;
-			min-height: 400px;
-			width: 100%;
-			margin: 0 auto;
-			text-align: center;
-		}
 		.form-php{
-			color: green;/*#e81123;*/
+			color: green;
 		}
-		.form-input {
-			margin-bottom: 12px;
-			background-color: rgba(255, 255, 255, 0.4);
-			border-color: rgba(0, 0, 0, 0.4);
-			border-style: solid;
-			border-width: 2px;
-			height: 2.2rem;
-			padding: 4px 8px 8px;
+		.form-control {
+			border: 1px solid #000;
 		}
-		input.q-a 	{
-			border-width: 0;
-			padding: 0;
-			margin: 0;
-			width: 100%;
-			outline: none;
+		.form-group {
+    	margin-bottom: 7px;
 		}
 		#difficulties{
-			margin-bottom: 12px;
-		}
-		a:link, a:visited{color: #0772C6; text-decoration:none}
-		button {
-			cursor: default!important;
+			margin-bottom: 7px;
 		}
 		.button {
 			width: 100%;
@@ -153,7 +127,7 @@
 	      <ul class="nav navbar-nav">
 	        <li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 	        <li class="dropdown active">
-	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Questions
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Questions
 	          <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
 	            <li><a href="Questions.php">Show questions</a></li>
@@ -165,7 +139,7 @@
 	            <?php } ?>
 	          </ul>
 	        </li>
-	        <li><a href="getUserInform.php">Get user information</a></li>
+	        <li><a href="getUserInform.php"><span class="glyphicon glyphicon-search"></span> Get user information</a></li>
 	        <li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
@@ -178,7 +152,7 @@
 	            <?php echo $_SESSION['user-firstname'].' '.$_SESSION['user-lastname']; ?>
 	            <span class="caret"></span></a>
 	            <ul class="dropdown-menu">
-	              <li><a href="#">Settings</a></li>
+	              <li><a href="changePassword.php">Change password</a></li>
 	              <li><a href="logout.php">Logout</a></li>
 	            </ul>
 	          </li>
@@ -188,16 +162,20 @@
 	  </div>
 	</nav>
 
-  <h1 id="header">Handle your questions</h1>
-	<div id="main">
-		<div id="count">
-			My questions/Total questions : <span id="questioncount"></span>
+  <h1 style="font-size: 300%">Handle your questions</h1>
+	<div class="container" style="text-align: center">
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+				<div id="count">
+					My questions/Total questions : <span id="questioncount"></span>
+				</div>
+		    <input class="button" type="button" id="addquestion" name="addquestion" value="Add question" onclick="addQuestion()">
+		    <input class="button" type="button" id="showquestions" name="showquestions" value="Show my questions" onclick="	showQuestions()"><br>
+		    <div class="form-group" id="div-addquestion" style="display:none"></div>
+		    <div class="form-php" id="div-php" style="display:none"></div>
+		    <div class="form-group" id="div-showquestions" style="display:none"></div>
+			</div>
 		</div>
-    <input class="button" type="button" id="addquestion" name="addquestion" value="Add question" onclick="addQuestion()">
-    <input class="button" type="button" id="showquestions" name="showquestions" value="Show my questions" onclick="	showQuestions()"><br>
-    <div class="form-group" id="div-addquestion" style="display:none"></div>
-    <div class="form-php" id="div-php" style="display:none"></div>
-    <div class="form-group" id="div-showquestions" style="display:none"></div>
 	</div>
 </body>
 </html>

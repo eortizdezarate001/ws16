@@ -1,19 +1,19 @@
 <form id="formquestions" name="formquestions">
-  <div class="form-input">
-    <input class="q-a" type="text" name="question" id="question" placeholder="Question" required>
+  <div class="form-group">
+    <input class="form-control" type="text" name="question" id="question" placeholder="Question" required>
   </div>
-  <div class="form-input">
-    <input class="q-a" type="text" name="answer" id="answer" placeholder="Answer" required>
+  <div class="form-group">
+    <input class="form-control" type="text" name="answer" id="answer" placeholder="Answer" required>
   </div>
-  <div class="form-input">
-    <input class="q-a" type="text" name="subject" id="subject" placeholder="Subject">
+  <div class="form-group">
+    <input class="form-control" type="text" name="subject" id="subject" placeholder="Subject">
   </div>
   <div id="difficulties">
-    1<input type="radio" name="difficulty" value="1">&nbsp;
-    2<input type="radio" name="difficulty" value="2">&nbsp;
-    3<input type="radio" name="difficulty" value="3">&nbsp;
-    4<input type="radio" name="difficulty" value="4">&nbsp;
-    5<input type="radio" name="difficulty" value="5">&nbsp;
+    <label class="radio-inline"><input type="radio" name="difficulty" value="1"> 1</label>
+    <label class="radio-inline"><input type="radio" name="difficulty" value="2"> 2</label>
+    <label class="radio-inline"><input type="radio" name="difficulty" value="3"> 3</label>
+    <label class="radio-inline"><input type="radio" name="difficulty" value="4"> 4</label>
+    <label class="radio-inline"><input type="radio" name="difficulty" value="5"> 5</label>
   </div>
   <input class="button" type="button" id='button' name="submit" value="Submit" onclick=javascript:submitForm()>
 </form>

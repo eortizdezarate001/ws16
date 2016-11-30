@@ -129,13 +129,13 @@
 				<ul class="nav navbar-nav">
 					<li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Questions
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Questions
 							<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="Questions.php">Show questions</a></li>
 							</ul>
 						</li>
-						<li><a href="getUserInform.php">Get user information</a></li>
+						<li><a href="getUserInform.php"><span class="glyphicon glyphicon-search"></span> Get user information</a></li>
 						<li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
@@ -181,11 +181,11 @@
 					<div class="col-sm-5 col-sm-offset-1 col-sm-pull-7">
 						<div class="form-group">
 							<label for="firstname">First name<font color="red">*</font></label>
-							<input type="text" class="form-control compulsory" id="firstname" name="firstname">
+							<input type="text" class="form-control compulsory" id="firstname" name="firstname" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="lastname">Last name<font color="red">*</font></label>
-							<input type="text" class="form-control compulsory compulsory" id="lastname" name="lastname">
+							<input type="text" class="form-control compulsory" id="lastname" name="lastname" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="email">Email<font color="red">*</font></label>
@@ -201,7 +201,7 @@
 						</div>
 						<div class="form-group">
 							<label for="phone">Phone number<font color="red">*</font></label>
-							<input type="text" class="form-control compulsory" id="phone" name="phone">
+							<input type="text" class="form-control compulsory" id="phone" name="phone" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<label for="specialty">Specialty<font color="red">*</font></label>

@@ -164,7 +164,7 @@
   	      <ul class="nav navbar-nav">
   	        <li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
   	        <li class="dropdown active">
-  	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Questions
+  	          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Questions
   	          <span class="caret"></span></a>
   	          <ul class="dropdown-menu">
   	            <li><a href="Questions.php">Show questions</a></li>
@@ -176,7 +176,7 @@
   	            <?php } ?>
   	          </ul>
   	        </li>
-  	        <li><a href="getUserInform.php">Get user information</a></li>
+  	        <li><a href="getUserInform.php"><span class="glyphicon glyphicon-search"></span> Get user information</a></li>
   	        <li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
   	      </ul>
   	      <ul class="nav navbar-nav navbar-right">
@@ -189,7 +189,7 @@
   	            <?php echo $_SESSION['user-firstname'].' '.$_SESSION['user-lastname']; ?>
   	            <span class="caret"></span></a>
   	            <ul class="dropdown-menu">
-  	              <li><a href="#">Settings</a></li>
+  	              <li><a href="changePassword.php">Change password</a></li>
   	              <li><a href="logout.php">Logout</a></li>
   	            </ul>
   	          </li>

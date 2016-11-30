@@ -7,61 +7,20 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
 	<link rel="stylesheet" href="./css/bootstrap.min.css"/>
 	<style>
-		#header  {
-			margin: 0 auto;
-			font-size: 300%;
-			text-align: center;
-			font-weight: 100;
-			width: 500px;
-
+		.form-group{
+			margin-bottom: 10px;
 		}
-		#main {
-			max-width: 350px;
-			padding-left: 12px;
-			padding-right: 12px;
-			min-height: 400px;
-			width: 100%;
-			margin: 0 auto;
-			text-align: center;
+		.form-control {
+			border: 1px solid #000;
 		}
-		.form-elem {
-			text-align: left;
-		}
-		.form-input {
-			margin-bottom: 12px;
-			background-color: rgba(255, 255, 255, 0.4);
-			border-color: rgba(0, 0, 0, 0.4);
-			border-style: solid;
-			border-width: 2px;
-			height: 2.2rem;
-			padding: 4px 8px 8px;
-		}
-		input.user-info 	{
+		input[type="text"]:disabled {
 			border-width: 0;
 			padding: 0;
 			margin: 0;
 			width: 100%;
 			outline: none;
-		}
-		input[type="text"]:disabled {
 			background-color: white;
-			margin-bottom: 12px;
-		}
-		#difficulty{
-			margin-bottom: 12px;
-		}
-		a:link, a:visited{color: #0772C6; text-decoration:none}
-		.button {
-			width: 100%;
-			height:35px;
-			background-color: rgb(19,122,212);
-			font-size: 100%;
-			border:none;
-			color:white;
-		}
-		.button:hover {
-			border:solid;
-			border-color:rgb(8,79,138);
+			margin-bottom: 7px;
 		}
 	</style>
 	<link rel="stylesheet" href="./css/style.css" />
@@ -76,12 +35,12 @@
 					dataType: "xml",
 					success: function(xml){
 							if($(xml).find('erabiltzailea').text() == "" && $('#email').val() !=""){
-								$('#wrap-email').css("border-color","#cc0000");
+								$('#email').css("border-color","#cc0000");
 								$('#firstname').val("");
 								$('#lastname').val("");
 								$('#phone').val("");
 							} else{
-								$('#wrap-email').css("border-color","rgba(0, 0, 0, 0.4)");
+								$('#email').css("border-color","#000");
 
 								var firstname = $(xml).find('firstname').text();
 								var lastname = $(xml).find('lastname').text();
@@ -111,7 +70,7 @@
 	      <ul class="nav navbar-nav">
 	        <li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 	        <li class="dropdown">
-	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Questions
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Questions
 	          <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
 	            <li><a href="Questions.php">Show questions</a></li>
@@ -123,7 +82,7 @@
 	            <?php } ?>
 	          </ul>
 	        </li>
-	        <li class="active"><a href="getUserInform.php">Get user information</a></li>
+	        <li class="active"><a href="getUserInform.php"><span class="glyphicon glyphicon-search"></span> Get user information</a></li>
 	        <li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
@@ -136,7 +95,7 @@
 	            <?php echo $_SESSION['user-firstname'].' '.$_SESSION['user-lastname']; ?>
 	            <span class="caret"></span></a>
 	            <ul class="dropdown-menu">
-	              <li><a href="#">Settings</a></li>
+	              <li><a href="changePassword.php">Change password</a></li>
 	              <li><a href="logout.php">Logout</a></li>
 	            </ul>
 	          </li>
@@ -146,36 +105,26 @@
 	  </div>
 	</nav>
 
-	<form>
-		<h1 id="header"> Get user information </h1>
-		<div id="main">
-			<p>
-				Insert a user's e-mail to get their personal information.
-			</p>
-			<div class="form-group">
-				<div class="form-elem">E-mail:
-					<div class="form-input" id="wrap-email">
-						<input class="user-info" type="email" name="email" id="email" required>
+	<div class="container">
+		<div class="jumbotron text-center">
+			<h1>Get user information</h1>
+		</div>
+		<div class="row">
+			<p align="center">Insert a user's e-mail to get their personal information.</p>
+			<div class="col-sm-4 col-sm-offset-4">
+				<form>
+					E-mail:
+					<div class="form-group">
+						<input class="form-control" type="email" name="email" id="email" required autocomplete="off">
 					</div>
-				</div>
-				<div class="form-elem">
-					<div >
-						<input class="user-info" type="text" name="firstname" id="firstname" placeholder="First name" disabled>
+					<input type="text" name="firstname" id="firstname" placeholder="First name" disabled>
+					<input type="text" name="lastname" id="lastname" placeholder="Last name" disabled>
+					<input type="text" name="phone" id="phone" placeholder="Phone" disabled>
+					<input class="btn btn-primary btn-block" type="button" value="Get info" onClick="javascript:getInfo()">
 					</div>
-				</div>
-				<div class="form-elem">
-					<div>
-						<input class="user-info" type="text" name="lastname" id="lastname" placeholder="Last name" disabled>
-					</div>
-				</div>
-				<div class="form-elem">
-					<div>
-						<input class="user-info" type="text" name="phone" id="phone" placeholder="Phone" disabled>
-					</div>
-				</div>
-				<input class="button" type="button" value="Get info" onClick="javascript:getInfo()">
+				</form>
 			</div>
 		</div>
-</form>
+	</div>
 </body>
 </html>
