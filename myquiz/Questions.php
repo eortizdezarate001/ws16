@@ -2,7 +2,7 @@
   session_start();
   include('connect.php');
 
-  $sql = "SELECT * FROM galderak INNER JOIN tests ON TestID=ID";
+  $sql = "SELECT * FROM tests ORDER BY ID";
   $query = mysqli_query($connect,$sql);
 
   $type = "Check questions";
@@ -25,17 +25,17 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Tests and questions</title>
+    <title>Quizes and questions</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
     <link rel="stylesheet" href="./css/bootstrap.min.css"/>
     <style>
       a#testname:hover, a#testname:active, a#testname:link, a#testname:visited {
   			text-decoration: none;
   		}
-	    th {text-align: left;}
-	    td {text-align: left; border-bottom: 1 px solid #ddd;}
-      #tr1 {border-top: none}
-      #tr1:hover{background-color: #ffffff};
+      .panel-body {
+        padding: 10px;
+        padding-bottom: 0px;
+      }
     </style>
     <link rel="stylesheet" href="./css/style.css"/>
     <script src="./js/jquery-3.1.1.min.js"></script>
@@ -56,15 +56,15 @@
           <ul class="nav navbar-nav">
             <li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
             <li class="dropdown active">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Questions
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Quizes
               <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="Questions.php">Show questions</a></li>
+                <li><a href="Questions.php">See all quizes</a></li>
                 <?php if(isset($_SESSION['auth'])){ ?>
-                  <li><a href="handlingQuizes.php">Handle questions</a></li>
+                  <li><a href="handlingQuizes.php">Handle quizes</a></li>
                 <?php } ?>
                 <?php if(isset($_SESSION['auth']) && $_SESSION['user-email']==='web000@ehu.es'){ ?>
-                  <li><a href="reviewingQuizes.php">Review questions</a></li>
+                  <li><a href="reviewingQuizes.php">Review quizes</a></li>
                 <?php } ?>
               </ul>
             </li>
@@ -93,13 +93,12 @@
 
     <div class="container">
       <div class="jumbotron text-center">
-  			<h1>Tests and questions</h1>
+  			<h1>Quizes and questions</h1>
   		</div>
       <div class="row">
-        <div class="col-sm-10-col-sm-offset-1">
+        <div class="col-sm-10 col-sm-offset-1">
           <div class="panel-group" id="accordion">
-            <?php
-              while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)){?>
+            <?php while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)){ ?>
                 <div class="panel panel-primary">
                   <div class="panel-heading">
                     <h4 class="panel-title">

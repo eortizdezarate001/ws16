@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Handle questions</title>
+	<title>Handle your quizes and questions</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
 	<link rel="stylesheet" href="./css/bootstrap.min.css"/>
 	<style>
@@ -14,10 +14,10 @@
 		.form-php{
 			color: green;
 		}
-		.form-control {
+		.form-control, #create-quiz {
 			border: 1px solid #000;
 		}
-		.form-group {
+		.form-group, #create-quiz {
     	margin-bottom: 7px;
 		}
 		#difficulties{
@@ -50,7 +50,7 @@
 				$('#div-addquestion').css('display','block');
 				$('#div-php').empty();
 				$('#div-php').css('display','block');
-				$('#div-addquestion').load("handlingQuizes-insertQuestion.txt");
+				$('#div-addquestion').load("handlingQuizes-insertQuestion.php");
 			} else if($('#div-addquestion').css('display') == 'block'){
 				$('#div-addquestion').css('display','none');
 				$("#div-php").css('display','none');
@@ -69,9 +69,9 @@
 			}
 		}
 		function submitForm(){
+			var test = $("#tests option:selected").text();
 			var question = $("#question").val();
 			var answer = $("#answer").val();
-			var subject = $("#subject").val();
 			var diff = document.getElementsByName("difficulty");
 			if(question !== "" && answer !== ""){
 				$("#div-php").html("...");
@@ -84,9 +84,9 @@
 				$.post(
 					"handlingQuizes-insertPHP.php",
 					{
+						test: test,
 						question: question,
 						answer: answer,
-						subject: subject,
 						difficulty: difficulty
 					},
 					function(result){
@@ -125,15 +125,15 @@
 	      <ul class="nav navbar-nav">
 	        <li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 	        <li class="dropdown active">
-	          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Questions
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Quizes
 	          <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="Questions.php">Show questions</a></li>
+	            <li><a href="Questions.php">See all quizes</a></li>
 	            <?php if(isset($_SESSION['auth'])){ ?>
-	              <li><a href="handlingQuizes.php">Handle questions</a></li>
+	              <li><a href="handlingQuizes.php">Handle quizes</a></li>
 	            <?php } ?>
 	            <?php if(isset($_SESSION['auth']) && $_SESSION['user-email']==='web000@ehu.es'){ ?>
-	              <li><a href="reviewingQuizes.php">Review questions</a></li>
+	              <li><a href="reviewingQuizes.php">Review quizes</a></li>
 	            <?php } ?>
 	          </ul>
 	        </li>
@@ -160,8 +160,10 @@
 	  </div>
 	</nav>
 
-  <h1 style="font-size: 300%">Handle your questions</h1>
 	<div class="container" style="text-align: center">
+		<div class="jumbotron text-center" style="margin-bottom: 12px">
+			<h1>Handle quizes and questions</h1>
+		</div>
 		<div class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 				<div id="count">

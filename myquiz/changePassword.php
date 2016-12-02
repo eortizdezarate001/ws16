@@ -73,15 +73,15 @@
 	      <ul class="nav navbar-nav">
 	        <li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 	        <li class="dropdown">
-	          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Questions
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Quizes
 	          <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="Questions.php">Show questions</a></li>
+	            <li><a href="Questions.php">See all quizes</a></li>
 	            <?php if(isset($_SESSION['auth'])){ ?>
-	              <li><a href="handlingQuizes.php">Handle questions</a></li>
+	              <li><a href="handlingQuizes.php">Handle quizes</a></li>
 	            <?php } ?>
 	            <?php if(isset($_SESSION['auth']) && $_SESSION['user-email']==='web000@ehu.es'){ ?>
-	              <li><a href="reviewingQuizes.php">Review questions</a></li>
+	              <li><a href="reviewingQuizes.php">Review quizes</a></li>
 	            <?php } ?>
 	          </ul>
 	        </li>

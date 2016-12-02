@@ -17,7 +17,7 @@
     <div class='panel panel-default'>
       <div class='panel-heading'>
         <h4 class='panel-title'>
-          <a id='testname' data-toggle='collapse' data-parent='#accordion' href='#collapse".$testid."'><strong>".$test['Name']."</strong></a>
+          <a id='testname' class='btn-block' data-toggle='collapse' data-parent='#accordion' href='#collapse".$testid."'><strong>".$test['Name']."</strong></a>
         </h4>
       </div>
       <div id='collapse".$testid."' class='panel-collapse collapse'>
@@ -32,16 +32,6 @@
     ";
   }
   echo "</div>";
-
-
-  //echo "<table><tr id='tr1'><th>".$email." - Questions</th></tr>";
-
-  /*while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)){
-    echo "<tr>";
-    echo "<td>".$row['Question']."</td>";
-    echo "</tr>";
-  }
-  echo "</table>";*/
-
+  
   mysqli_close($connect);
 ?>

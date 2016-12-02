@@ -4,7 +4,7 @@
   include('connect.php');
 
   $myemail = mysqli_real_escape_string($connect,$_SESSION['user-email']);
-  $sql1 = "SELECT COUNT(*) FROM galderak WHERE Email='$myemail'";
+  $sql1 = "SELECT COUNT(*) FROM galderak INNER JOIN tests ON TestID=ID WHERE Creator='$myemail'";
   $query1 = mysqli_query($connect,$sql1);
   $myquestions = mysqli_fetch_row($query1);
   echo $myquestions[0];

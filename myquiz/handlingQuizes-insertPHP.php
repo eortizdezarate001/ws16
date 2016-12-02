@@ -3,16 +3,25 @@
   include('security.php');
   include('connect.php');
 
+  $test = mysqli_real_escape_string($connect,$_POST['test']);
+  if($test == ""){
+    echo "<font color='#cc0000'>There is no quiz to insert this question to.</font>"; 
+  } else{
   $question = mysqli_real_escape_string($connect,$_POST['question']);
   $answer = mysqli_real_escape_string($connect,$_POST['answer']);
-  $subject = mysqli_real_escape_string($connect,$_POST['subject']);
   $email = mysqli_real_escape_string($connect,$_SESSION['user-email']);
+
+  $testsql = "SELECT ID FROM tests WHERE Name = '$test'";
+  $testquery = mysqli_query($connect,$testsql);
+  $testresult = mysqli_fetch_array($testquery,MYSQLI_ASSOC);
+  $testid = $testresult['ID'];
+
   if($_POST['difficulty']!==''){
     $difficulty = $_POST['difficulty'];
-    $sql = "INSERT INTO galderak VALUES (0,'$email','$question','$answer','$subject','$_POST[difficulty]')";
+    $sql = "INSERT INTO galderak VALUES (0,'$question','$answer','$_POST[difficulty]', '$testid')";
   } else{
     $difficulty = "";
-    $sql = "INSERT INTO galderak VALUES (0,'$email','$question','$answer','$subject', NULL)";
+    $sql = "INSERT INTO galderak VALUES (0,'$question','$answer', NULL, '$testid')";
   }
   $query = mysqli_query($connect,$sql);
   if (!$query){
@@ -20,7 +29,7 @@
   }
 
   echo "Your question was added successfully.<br>";
-  echo "<a href='Questions.php'>See questions.</a>";
+  echo "<a href='Questions.php'>See all questions.</a>";
 
   // EKINTZA
   $connection = (int)$_SESSION['user-connection'];
@@ -35,4 +44,5 @@
   }
   mysqli_close($connect);
   exit;
+  }
 ?>
