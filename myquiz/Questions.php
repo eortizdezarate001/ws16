@@ -2,7 +2,7 @@
   session_start();
   include('connect.php');
 
-  $sql = "SELECT * FROM galderak";
+  $sql = "SELECT * FROM galderak INNER JOIN tests ON TestID=ID";
   $query = mysqli_query($connect,$sql);
 
   $type = "Check questions";
@@ -25,21 +25,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Questions</title>
+    <title>Tests and questions</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
     <link rel="stylesheet" href="./css/bootstrap.min.css"/>
     <style>
-      #header  {
-        font-size: 300%; text-align: center; font-weight: 100;
-        padding-top: 20px;
-      }
-      #question-table {margin-top: -30px;}
-      a:link, a:visited{color: #0772C6; text-decoration:none}
-      table	{border-collapse: collapse; width: 100%; }
-	    th		{text-align: center;padding: 8px; border-bottom: 1px solid #ddd;}
-	    td 		{padding: 8px; text-align: center; border-bottom: 1px solid #ddd;}
-      .q {text-align: left; border-right: 1px solid #ddd;;}
-	    tr:hover{background-color:#f5f5f5}
+      a#testname:hover, a#testname:active, a#testname:link, a#testname:visited {
+  			text-decoration: none;
+  		}
+	    th {text-align: left;}
+	    td {text-align: left; border-bottom: 1 px solid #ddd;}
+      #tr1 {border-top: none}
       #tr1:hover{background-color: #ffffff};
     </style>
     <link rel="stylesheet" href="./css/style.css"/>
@@ -96,24 +91,53 @@
       </div>
     </nav>
 
-    <div id="question-table">
-      <h1 id='header'> Questions </h1>
-      <table>
-        <tr id='tr1'>
-          <th width='65%'>Question</th>
-          <th width='5%'>Difficulty</th>
-          <th width='20%'>Subject</th>
-        </tr>
-        <?php
-          while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)){
-            echo "<tr>";
-            echo "<td class='q'>".$row['Question']."</td>";
-            echo "<td>".$row['Difficulty']."</td>";
-            echo "<td>".$row['Subject']."</td>";
-            echo "</tr>";
-          }
-        ?>
-      </table>
+    <div class="container">
+      <div class="jumbotron text-center">
+  			<h1>Tests and questions</h1>
+  		</div>
+      <div class="row">
+        <div class="col-sm-10-col-sm-offset-1">
+          <div class="panel-group" id="accordion">
+            <?php
+              while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)){?>
+                <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="<?php echo "#collapse".$row['ID']; ?>" class="btn-block" id="testname"><?php echo $row['Name']; ?></a>
+                    </h4>
+                  </div>
+                  <div id="<?php echo "collapse".$row['ID']; ?>" class="panel-collapse collapse">
+                    <div class="panel-body table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                          <th>Question</th>
+                          <th width="10%">Difficulty</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                            $qsql = "SELECT * FROM galderak WHERE TestID='$row[ID]'";
+                            $qquery = mysqli_query($connect,$qsql);
+                            while($qrow=mysqli_fetch_array($qquery,MYSQLI_ASSOC)){
+                              echo "<tr>";
+                              echo "<td>".$qrow['Question']."</td>";
+                              echo "<td>".$qrow['Difficulty']."</td>";
+                              echo "</tr>";
+                            }
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+              <?php }
+              mysqli_free_result($query);
+              mysqli_close($connect);
+             ?>
+        </div>
+      </div>
     </div>
   </body>
 </html>

@@ -7,7 +7,7 @@
   $query = mysqli_query($connect,$sql);
   $user = mysqli_fetch_array($query,MYSQLI_ASSOC);
 
- $xml = new SimpleXMLElement("<erabiltzailea></erabiltzailea>");
+  $xml = new SimpleXMLElement("<erabiltzailea></erabiltzailea>");
   $xml->addChild("email",$user['Email']);
   $xml->addChild("firstname",$user['First name']);
   $xml->addChild("lastname",$user['Last name']);

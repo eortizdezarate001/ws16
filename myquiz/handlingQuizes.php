@@ -36,11 +36,9 @@
 			border:solid;
 			border-color:rgb(8,79,138);
 		}
-		table	{border-collapse: collapse; width: 100%; }
-		th		{text-align: center;padding: 8px; border-bottom: 1px solid #ddd;}
-		td 		{padding: 8px; text-align: left; border-bottom: 1px solid #ddd;}
-		tr:hover{background-color:#f5f5f5}
-		#tr1:hover{background-color: #ffffff};
+		a#testname:hover, a#testname:active, a#testname:link, a#testname:visited {
+			text-decoration: none;
+		}
 	</style>
 	<link rel="stylesheet" href="./css/style.css" />
 	<script src="./js/jquery-3.1.1.min.js"></script>

@@ -43,14 +43,13 @@
 
 
   $sql = "INSERT INTO erabiltzailea
-          VALUES ('$firstname','$lastname','$email','$enct','$phone','$spec','$interests','$image')";
+          VALUES ('$firstname','$lastname','$email','$enct','$phone','$spec','$interests','$image',0)";
   $query = mysqli_query($connect,$sql);
   if (!$query){
     die('ERROR at query execution:' . mysqli_error($connect));
   }
 
-  echo "One row was added to the database.";
-  echo "<p><a href='ShowUsersWithImage.php'>Click here to check it out.</a></p>";
+  header("Location: layout.php");
 
   mysqli_close($connect);
 ?>
