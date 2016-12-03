@@ -27,6 +27,13 @@
       .table>tbody>tr>td{
         vertical-align: middle;
       }
+      .form-control {
+    		border: 1px solid #000;
+    	}
+      .modal-footer>.btn-group>.btn{
+        width: 100px;
+      }
+
     </style>
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/jquery-3.1.1.min.js"></script>
@@ -102,8 +109,8 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th>Question</th>
-                          <th>Answer</th>
+                          <th width="40%">Question</th>
+                          <th width="40%">Answer</th>
                           <th width="10%">Difficulty</th>
                           <th width="10%"></th>
                         </tr>
@@ -115,7 +122,7 @@
                           while($question=mysqli_fetch_array($qquery,MYSQLI_ASSOC)){
                             echo "<tr>";
                             echo "<td class='q'>".$question['Question']."<input type='hidden' class='number' value='".$question['Number']."'></td>";
-                            echo "<td class='a'>".$question['Answer']."<input type='hidden' class='testid' value=".$question['TestID']."</td>";
+                            echo "<td class='a'>".$question['Answer']."</td>";
                             echo "<td class='d'>".$question['Difficulty']."</td>";
                             echo "<td><input type='button' class='btn btn-primary btn-block' value='Edit' data-toggle='modal' data-target='#myModal' onclick='edit(this)'></td>";
                             echo "</tr>";
@@ -154,7 +161,7 @@
                 <label for="answer">Answer:</label>
                 <input class="form-control" type="text" name="answer" id="answer" placeholder="Answer" required>
               </div>
-              <div id="difficulty">
+              <div id="difficulty" style="text-align:center">
                 <label class="radio-inline"><input type="radio" name="difficulty" value="1"> 1</label>
                 <label class="radio-inline"><input type="radio" name="difficulty" value="2"> 2</label>
                 <label class="radio-inline"><input type="radio" name="difficulty" value="3"> 3</label>
@@ -163,25 +170,33 @@
               </div>
             </form>
           </div>
-          <div class="modal-footer" align="center">
-            ALSO A LOT OF STUFFFF
+          <div class="modal-footer">
+            <div class="btn-group">
+              <input type="button" class="btn btn-danger" name="delete" id="delete" value="Delete">
+              <input type="button" class="btn btn-primary" name="save" id="save" value="Save">
+            </div>
           </div>
         </div>
       </div>
     </div>
     <script type="text/javascript">
+      var selectedRow;
       function edit(b){
         var row = $(b).closest("tr");
+        selectedRow = row;
         var question = row.find(".q").text();
         var number = row.find(".number").val();
         var answer = row.find(".a").text();
-        var testid = row.find(".testid").val();
         var difficulty = row.find(".d").text();
+
+        $('#save').val("Save");
+        $('#save').prop('disabled',false);
+        $('#delete').val("Delete");
+        $('#delete').prop('disabled',false);
 
         $('#question').val(question);
         $('#number').val(number);
         $('#answer').val(answer);
-        $('#testid').val(testid);
         if(difficulty !== "") {
           $("input[name=difficulty][value="+difficulty+"]").prop("checked", true);
         } else {
@@ -189,36 +204,40 @@
         }
       }
 
-      var changed = false;
       $('#save').click(function(){
         var form = $('#edit-question').serialize();
-        $.ajax({
-          url: "editQuestion.php",
-          type: "post",
-          data: form,
-          success: function(response){
+        $.post(
+          "editQuestion.php",
+          form,
+          function(response){
             if(response === "edited"){
-              $('#edited').css("visibility","visible");
-              changed = true;
+              $('#save').val("Saved");
+              $('#save').prop('disabled',true);
+
+              selectedRow.find(".btn").val("Edited");
+              selectedRow.find(".btn").prop('disabled',true);
+              selectedRow.find(".q").text($('#question').val());
+              selectedRow.find(".a").text($('#answer').val());
+              selectedRow.find(".d").text($('input[name=difficulty]:checked').val());
             }
           }
-        });
+        );
       });
 
       $('#delete').click(function(){
         var form = $('#edit-question').serialize();
-        $.ajax({
-          url: "deleteQuestion.php",
-          type: "post",
-          data: form,
-          success: function(response){
+        $.post(
+          "deleteQuestion.php",
+          form,
+          function(response){
             if(response === "deleted"){
-              $('#deleted').css("visibility","visible");
-              $('#edit-question')[0].reset();
-              changed = true;
+              $('#delete').val("Deleted");
+              $('#delete').prop('disabled',true);
+
+              selectedRow.remove();
             }
           }
-        })
+        );
       });
 
       function close(){

@@ -11,6 +11,9 @@
 			margin-bottom: 12px;
 			font-size: 110%;
 		}
+		#showquestions {
+			margin-bottom: 5px;
+		}
 		.form-php{
 			color: green;
 		}
@@ -23,19 +26,6 @@
 		#difficulties{
 			margin-bottom: 7px;
 		}
-		.button {
-			width: 100%;
-			height:35px;
-			background-color: rgb(19,122,212);
-			font-size: 100%;
-			border:none;
-			color:white;
-      margin-bottom: 10px;
-		}
-		.button:hover {
-			border:solid;
-			border-color:rgb(8,79,138);
-		}
 		a#testname:hover, a#testname:active, a#testname:link, a#testname:visited {
 			text-decoration: none;
 		}
@@ -47,11 +37,13 @@
 		function addQuestion(){
 			$('#div-showquestions').css('display','none');
 			if($('#div-addquestion').css('display') == 'none'){
+				$('#addquestion').focus();
 				$('#div-addquestion').css('display','block');
 				$('#div-php').empty();
 				$('#div-php').css('display','block');
 				$('#div-addquestion').load("handlingQuizes-insertQuestion.php");
 			} else if($('#div-addquestion').css('display') == 'block'){
+				$('#addquestion').blur();
 				$('#div-addquestion').css('display','none');
 				$("#div-php").css('display','none');
 				$("#div-php").empty();
@@ -62,9 +54,11 @@
 			$("#div-php").css('display','none');
 			$("#div-php").empty();
 			if($('#div-showquestions').css('display') == 'none'){
+				$('#showquestions').focus();
 				$('#div-showquestions').css('display','block');
 				$('#div-showquestions').load("handlingQuizes-showMyQuestions.php");
 			} else if($('#div-showquestions').css('display') == 'block'){
+				$('#showquestions').blur();
 				$('#div-showquestions').css('display','none');
 			}
 		}
@@ -169,8 +163,8 @@
 				<div id="count">
 					My questions/Total questions : <span id="questioncount"></span>
 				</div>
-		    <input class="button" type="button" id="addquestion" name="addquestion" value="Add question" onclick="addQuestion()">
-		    <input class="button" type="button" id="showquestions" name="showquestions" value="Show my questions" onclick="	showQuestions()"><br>
+		    <input class="btn btn-primary btn-block" type="button" id="addquestion" name="addquestion" value="Add question" onclick="addQuestion()">
+		    <input class="btn btn-primary btn-block" type="button" id="showquestions" name="showquestions" value="Show my questions" onclick="showQuestions()">
 		    <div class="form-group" id="div-addquestion" style="display:none"></div>
 		    <div class="form-php" id="div-php" style="display:none"></div>
 		    <div class="form-group" id="div-showquestions" style="display:none"></div>

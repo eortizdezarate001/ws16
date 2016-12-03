@@ -14,10 +14,10 @@
     $sqlg = "SELECT * FROM galderak WHERE TestID='$testid'";
     $queryg = mysqli_query($connect,$sqlg);
     echo "
-    <div class='panel panel-default'>
+    <div class='panel panel-primary'>
       <div class='panel-heading'>
         <h4 class='panel-title'>
-          <a id='testname' class='btn-block' data-toggle='collapse' data-parent='#accordion' href='#collapse".$testid."'><strong>".$test['Name']."</strong></a>
+          <a id='testname' class='btn-block' data-toggle='collapse' data-parent='#accordion' href='#collapse".$testid."'>".$test['Name']."</a>
         </h4>
       </div>
       <div id='collapse".$testid."' class='panel-collapse collapse'>
@@ -32,6 +32,6 @@
     ";
   }
   echo "</div>";
-  
+
   mysqli_close($connect);
 ?>

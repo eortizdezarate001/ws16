@@ -272,7 +272,7 @@
     <script type="text/javascript">
       $('.button').click(function(){
         var row = $(this).closest("tr");
-        var student = row.find(".em").text();
+        var student = row.find(".em").text();alert(student);
         var question = row.find(".q").text();
         var number = row.find(".number").val();
         var answer = row.find(".a").text();

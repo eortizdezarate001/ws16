@@ -35,5 +35,5 @@
     <label class="radio-inline"><input type="radio" name="difficulty" value="4"> 4</label>
     <label class="radio-inline"><input type="radio" name="difficulty" value="5"> 5</label>
   </div>
-  <input class="button" type="button" id='button' name="submit" value="Submit" onclick=javascript:submitForm()>
+  <input class="btn btn-primary btn-block" type="button" id='button' name="submit" value="Submit" onclick=javascript:submitForm()>
 </form>
