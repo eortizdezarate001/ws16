@@ -4,9 +4,6 @@
   include('connect.php');
 
   $test = mysqli_real_escape_string($connect,$_POST['test']);
-  if($test == ""){
-    echo "<font color='#cc0000'>There is no quiz to insert this question to.</font>"; 
-  } else{
   $question = mysqli_real_escape_string($connect,$_POST['question']);
   $answer = mysqli_real_escape_string($connect,$_POST['answer']);
   $email = mysqli_real_escape_string($connect,$_SESSION['user-email']);
@@ -44,5 +41,4 @@
   }
   mysqli_close($connect);
   exit;
-  }
 ?>

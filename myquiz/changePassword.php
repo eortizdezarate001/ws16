@@ -72,21 +72,21 @@
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">
 	        <li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-	        <li class="dropdown">
-	          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Quizes
-	          <span class="caret"></span></a>
-	          <ul class="dropdown-menu">
-	            <li><a href="Questions.php">See all quizes</a></li>
-	            <?php if(isset($_SESSION['auth'])){ ?>
-	              <li><a href="handlingQuizes.php">Handle quizes</a></li>
-	            <?php } ?>
-	            <?php if(isset($_SESSION['auth']) && $_SESSION['user-email']==='web000@ehu.es'){ ?>
-	              <li><a href="reviewingQuizes.php">Review quizes</a></li>
-	            <?php } ?>
-	          </ul>
-	        </li>
-	        <li><a href="getUserInform.php"><span class="glyphicon glyphicon-search"></span> Get user information</a></li>
-	        <li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
+					<?php if(isset($_SESSION['auth'])){ ?>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Quizes
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="Questions.php">See all quizes</a></li>
+              <li><a href="createQuiz.php">Create quiz</a></li>
+              <li><a href="handlingQuizes.php">Handle quizes</a></li>
+              <?php if(isset($_SESSION['auth']) && $_SESSION['user-email']==='web000@ehu.es'){ ?>
+                <li><a href="reviewingQuizes.php">Review quizes</a></li>
+              <?php } ?>
+            </ul>
+          </li>
+          <li><a href="getUserInform.php"><span class="glyphicon glyphicon-search"></span> Get user information</a></li>
+          <?php } ?><li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	        <?php if(!isset($_SESSION['auth'])){ ?>

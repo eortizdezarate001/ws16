@@ -43,53 +43,53 @@
   </head>
   <body>
     <nav class="navbar navbar-inverse" style="border-radius:0px">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="layout.php">Quizes</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+  	  <div class="container-fluid">
+  	    <div class="navbar-header">
+  	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+  	        <span class="icon-bar"></span>
+  	        <span class="icon-bar"></span>
+  	        <span class="icon-bar"></span>
+  	      </button>
+  	      <a class="navbar-brand" href="layout.php">Quizes</a>
+  	    </div>
+  	    <div class="collapse navbar-collapse" id="myNavbar">
+  	      <ul class="nav navbar-nav">
+  	        <li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+  					<?php if(isset($_SESSION['auth'])){ ?>
             <li class="dropdown active">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Quizes
               <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="Questions.php">See all quizes</a></li>
-                <?php if(isset($_SESSION['auth'])){ ?>
-                  <li><a href="handlingQuizes.php">Handle quizes</a></li>
-                <?php } ?>
+                <li><a href="createQuiz.php">Create quiz</a></li>
+                <li><a href="handlingQuizes.php">Handle quizes</a></li>
                 <?php if(isset($_SESSION['auth']) && $_SESSION['user-email']==='web000@ehu.es'){ ?>
                   <li><a href="reviewingQuizes.php">Review quizes</a></li>
                 <?php } ?>
               </ul>
             </li>
             <li><a href="getUserInform.php"><span class="glyphicon glyphicon-search"></span> Get user information</a></li>
-            <li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <?php if(!isset($_SESSION['auth'])){ ?>
-              <li><a href="signUp.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li><a href="SignIn.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <?php } else if(isset($_SESSION['auth'])){ ?>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>
-                <?php echo $_SESSION['user-firstname'].' '.$_SESSION['user-lastname']; ?>
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="changePassword.php">Change password</a></li>
-                  <li><a href="logout.php">Logout</a></li>
-                </ul>
-              </li>
-              <?php } ?>
-          </ul>
-        </div>
-      </div>
-    </nav>
+            <?php } ?><li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
+  	      </ul>
+  	      <ul class="nav navbar-nav navbar-right">
+  	        <?php if(!isset($_SESSION['auth'])){ ?>
+  	          <li><a href="signUp.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+  	          <li><a href="SignIn.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+  	        <?php } else if(isset($_SESSION['auth'])){ ?>
+  	          <li class="dropdown">
+  	            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>
+  	            <?php echo $_SESSION['user-firstname'].' '.$_SESSION['user-lastname']; ?>
+  	            <span class="caret"></span></a>
+  	            <ul class="dropdown-menu">
+  	              <li><a href="changePassword.php">Change password</a></li>
+  	              <li><a href="logout.php">Logout</a></li>
+  	            </ul>
+  	          </li>
+  	          <?php } ?>
+  	      </ul>
+  	    </div>
+  	  </div>
+  	</nav>
 
     <div class="container">
       <div class="jumbotron text-center">

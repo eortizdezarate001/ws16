@@ -32,6 +32,7 @@
             <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="Questions.php">See all quizes</a></li>
+              <li><a href="createQuiz.php">Create quiz</a></li>
               <li><a href="handlingQuizes.php">Handle quizes</a></li>
               <?php if(isset($_SESSION['auth']) && $_SESSION['user-email']==='web000@ehu.es'){ ?>
                 <li><a href="reviewingQuizes.php">Review quizes</a></li>

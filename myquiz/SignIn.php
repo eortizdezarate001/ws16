@@ -123,7 +123,7 @@ if(isset($_SESSION['user-email'])){
 	              } else{
 	                echo "Error.";
 	              }
-	            } else{echo "<br>";}
+	            } else echo "<br>";
 	          ?></p>
 	        </div>
 					<div class="form-group">
