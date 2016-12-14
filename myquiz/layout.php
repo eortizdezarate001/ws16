@@ -34,6 +34,7 @@
               <li><a href="Questions.php">See all quizes</a></li>
               <li><a href="createQuiz.php">Create quiz</a></li>
               <li><a href="handlingQuizes.php">Handle quizes</a></li>
+              <li><a href="insertQuestion.php">Insert question</a></li>
               <?php if(isset($_SESSION['auth']) && $_SESSION['user-email']==='web000@ehu.es'){ ?>
                 <li><a href="reviewingQuizes.php">Review quizes</a></li>
               <?php } ?>

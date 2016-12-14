@@ -1,146 +1,178 @@
-<?php   session_start(); include('securityH.php');?>
+<?php session_start(); include('security.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Insert Question</title>
-	<link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
-	<style>
-		body	  {font-family: 'Roboto', sans-serif; font-weight: 400;}
-		#header  {
-			font-size: 300%; text-align: center; font-weight: 100;
+	<title>Insert question</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
+  <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+  <style>
+    .form-php{
+  		text-align: center;
+  		margin: 4px;
+  		color: #cc0000;
+  	}
+		.form-control, #create-quiz {
+			border: 1px solid #000;
 		}
-		#main {
-			max-width: 350px;
-			padding-left: 12px;
-			padding-right: 12px;
-			min-height: 400px;
-			width: 100%;
-			margin: 0 auto;
+		.form-group, #create-quiz {
+    	margin-bottom: 7px;
+		}
+		#difficulties{
 			text-align: center;
+			margin-bottom: 7px;
 		}
-		.form-php{
-			color: green;/*#e81123;*/
-		}
-		.form-input {
-			margin-bottom: 12px;
-			background-color: rgba(255, 255, 255, 0.4);
-			border-color: rgba(0, 0, 0, 0.4);
-			border-style: solid;
-			border-width: 2px;
-			height: 1rem;
-			padding: 4px 8px 8px;
-		}
-		input.q-a 	{
-			border-width: 0;
-			padding: 0;
-			margin: 0;
-			width: 100%;
-			outline: none;
-		}
-		#difficulty{
-			margin-bottom: 12px;
-		}
-		a:link, a:visited{color: #0772C6; text-decoration:none}
-		.button {
-			width: 100%;
-			height:35px;
-			background-color: rgb(19,122,212);
-			font-size: 100%;
-			border:none;
-			color:white;
-		}
-		.button:hover {
-			border:solid;
-			border-color:rgb(8,79,138);
+		.div-php{
+			text-align: center;
+			color: green;
 		}
 
-	</style>
+  </style>
+  <link rel="stylesheet" href="./css/style.css" />
+	<script src="./js/jquery-3.1.1.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		function submitForm(){
+			var test = $("#tests option:selected").text();
+			var question = $("#question").val();
+			var answer = $("#answer").val();
+			var diff = document.getElementsByName("difficulty");
+			if(question !== "" && answer !== ""){
+				$("#div-php").html("...");
+				var difficulty="";
+				for(var i=0;i<5;i++){
+					if(diff[i].checked){
+						difficulty = diff[i].value;
+					}
+				}
+				$.post(
+					"handlingQuizes-insertPHP.php",
+					{
+						test: test,
+						question: question,
+						answer: answer,
+						difficulty: difficulty
+					},
+					function(result){
+						$('#div-php').html(result);
+					}
+				);
+			} else{
+				$("#div-php").html("<font color='black'>Question or Answer fields are empty.</font>");
+			}
+		}
+  </script>
 </head>
-
 <body>
-	<form action="InsertQuestion.php" id="question" name="question" method="post">
-		<div id="main">
-			<h1 id="header"> Insert Question </h1>
-			<p>
-				Insert your question with its answer. <br>
-				You can specify the difficulty.
-			</p>
-			<div class="form-group">
-				<div class="form-input">
-					<input class="q-a" type="text" name="question" id="question" placeholder="Question" required>
-				</div>
-				<div class="form-input">
-					<input class="q-a" type="text" name="answer" id="answer" placeholder="Answer" required>
-				</div>
-				<div class="form-input">
-					<input class="q-a" type="text" name="subject" id="subject" placeholder="Subject">
-				</div>
-				<div id="difficulty">
-					1<input type="radio" name="difficulty" value="1">&nbsp;
-					2<input type="radio" name="difficulty" value="2">&nbsp;
-					3<input type="radio" name="difficulty" value="3">&nbsp;
-					4<input type="radio" name="difficulty" value="4">&nbsp;
-					5<input type="radio" name="difficulty" value="5">&nbsp;
-				</div>
-				<input class="button" type="submit" id='button' name="submit" value="Submit">
-				<div class="form-php"><p><!-- php kodea -->
-					<?php
-						if(isset($_POST["submit"])){
-							include('connect.php');
+  <nav class="navbar navbar-inverse" style="border-radius:0px">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="layout.php">Quizes</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li><a href="layout.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+					<?php if(isset($_SESSION['auth'])){ ?>
+          <li class="dropdown active">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-globe"></span> Quizes
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="Questions.php">See all quizes</a></li>
+              <li><a href="createQuiz.php">Create quiz</a></li>
+              <li><a href="handlingQuizes.php">Handle quizes</a></li>
+							<li><a href="insertQuestion.php">Insert question</a></li>
+              <?php if(isset($_SESSION['auth']) && $_SESSION['user-email']==='web000@ehu.es'){ ?>
+                <li><a href="reviewingQuizes.php">Review quizes</a></li>
+              <?php } ?>
+            </ul>
+          </li>
+          <li><a href="getUserInform.php"><span class="glyphicon glyphicon-search"></span> Get user information</a></li>
+          <?php } ?><li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <?php if(!isset($_SESSION['auth'])){ ?>
+	          <li><a href="signUp.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	          <li><a href="SignIn.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	        <?php } else if(isset($_SESSION['auth'])){ ?>
+	          <li class="dropdown">
+	            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>
+	            <?php echo $_SESSION['user-firstname'].' '.$_SESSION['user-lastname']; ?>
+	            <span class="caret"></span></a>
+	            <ul class="dropdown-menu">
+	              <li><a href="changePassword.php">Change password</a></li>
+	              <li><a href="logout.php">Logout</a></li>
+	            </ul>
+	          </li>
+	          <?php } ?>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
 
-							$question = mysqli_real_escape_string($connect,$_POST['question']);
-							$answer = mysqli_real_escape_string($connect,$_POST['answer']);
-							$subject = mysqli_real_escape_string($connect,$_POST['subject']);
-							$email = mysqli_real_escape_string($connect,$_SESSION['user-email']);
-							if(isset($_POST['difficulty'])){
-								$sql = "INSERT INTO galderak VALUES (0,'$email','$question','$answer','$subject','$_POST[difficulty]')";
-							} else{
-								$sql = "INSERT INTO galderak VALUES (0,'$email','$question','$answer','$subject', NULL)";
-							}
-							$query = mysqli_query($connect,$sql);
-							if (!$query){
-						    die('ERROR at query execution:' . mysqli_error($connect));
-						  }
-
-							// ADD TO XML FILE
-							$file = 'galderak.xml';
-							$xml = simplexml_load_file($file);
-
-							$assessmentItem = $xml->addChild('assessmentItem');
-							$assessmentItem->addAttribute('complexity', $_POST['difficulty']);
-							$assessmentItem->addAttribute('subject',$subject);
-							$itemBody = $assessmentItem->addChild('itemBody');
-							$itemBody->addChild('p',$question);
-							$correctResponse = $assessmentItem->addChild('correctResponse');
-							$correctResponse->addChild('value', $answer);
-
-							$xml->asXML($file);
-
-							echo "Your question was added successfully.<br>";
-							echo "<a href='seeXMLQuestions.php'>See questions.</a>";
-
-							// EKINTZA
-							$connection = (int)$_SESSION['user-connection'];
-							$type = "Insert question";
-							$date = date ("Y-m-d H:i:s");
-							$ip = $_SERVER['REMOTE_ADDR'];
-
-							$sql2 = "INSERT INTO ekintzak VALUES(0, $connection, '$email', '$type', '$date', '$ip')";
-							$query2 = mysqli_query($connect,$sql2);
-							if (!$query2){
-						    die('ERROR at query execution:' . mysqli_error($connect));
-						  }
-
-
-							mysqli_close($connect);
-							//header('Location: layout.php');
-							exit;
-						}
-					 ?>
-				</p></div>
+	<div class="container">
+		<div class="jumbotron text-center">
+			<h1>Insert question</h1>
+		</div>
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+				<?php
+				  include('connect.php');
+				  $email = mysqli_real_escape_string($connect,$_SESSION['user-email']);
+				  $sql = "SELECT Name FROM tests WHERE Creator='$email'";
+				  $query = mysqli_query($connect,$sql);
+				  $count = mysqli_num_rows($query);
+				 ?>
+				<form id="formquestions" name="formquestions">
+				  <?php if($count == 0){
+				      echo "You can't add questions if you have no quizes.<br>";
+				      echo "<a href='createQuiz.php' class='btn btn-default btn-block' id='create-quiz' role='button'>Create a quiz!</a>";
+				      echo "<input type='hidden' name='tests' value=''>";
+				  } else{?>
+				  <div class="form-group" style="text-align: left">
+				    <label for="tests">Quiz:</label>
+				    <select class="form-control" id="tests" name="tests">
+				      <?php
+				        while ($row = mysqli_fetch_array($query,MYSQLI_ASSOC)) {
+				          echo "<option>".$row['Name']."</option>";
+				        }
+				      ?>
+				    </select>
+				  </div><?php } ?>
+				  <div class="form-group">
+				    <?php if($count == 0){ ?>
+				      <input class="form-control" type="text" name="question" id="question" placeholder="Question" disabled>
+				    <?php } else{ ?>
+				      <input class="form-control" type="text" name="question" id="question" placeholder="Question" required>
+				    <?php } ?>
+				  </div>
+				  <div class="form-group">
+				    <?php if($count == 0){ ?>
+				      <input class="form-control" type="text" name="answer" id="answer" placeholder="Answer" disabled>
+				    <?php } else{ ?>
+				      <input class="form-control" type="text" name="answer" id="answer" placeholder="Answer" required>
+				    <?php } ?>
+				  </div>
+				  <?php if($count == 0){ ?>
+				    <input class="btn btn-primary btn-block disabled" type="button" id='button' name="submit" value="Submit">
+				  <?php } else{ ?>
+				    <div id="difficulties">
+				      <label class="radio-inline"><input type="radio" name="difficulty" value="1"> 1</label>
+				      <label class="radio-inline"><input type="radio" name="difficulty" value="2"> 2</label>
+				      <label class="radio-inline"><input type="radio" name="difficulty" value="3"> 3</label>
+				      <label class="radio-inline"><input type="radio" name="difficulty" value="4"> 4</label>
+				      <label class="radio-inline"><input type="radio" name="difficulty" value="5"> 5</label>
+				    </div>
+				    <input class="btn btn-primary btn-block" type="button" id='button' name="submit" value="Submit" onclick=javascript:submitForm()>
+				  <?php } ?>
+				</form>
+				<div class="div-php" id="div-php"></div>
 			</div>
 		</div>
-</form>
+	</div>
 </body>
 </html>

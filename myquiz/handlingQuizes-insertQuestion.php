@@ -10,7 +10,7 @@
 <form id="formquestions" name="formquestions">
   <?php if($count == 0){
       echo "You can't add questions if you have no quizes.<br>";
-      echo "<a href='#' class='btn btn-default btn-block' id='create-quiz' role='button'>Create a quiz!</a>";
+      echo "<a href='createQuiz.php' class='btn btn-default btn-block' id='create-quiz' role='button'>Create a quiz!</a>";
       echo "<input type='hidden' name='tests' value=''>";
   } else{?>
   <div class="form-group" style="text-align: left">
