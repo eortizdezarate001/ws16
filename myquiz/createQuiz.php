@@ -78,8 +78,18 @@
               <?php } ?>
             </ul>
           </li>
+					<?php if($_SESSION['user-email'] === 'web000@ehu.es'){ ?>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Users
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+							<li><a href="users.php">Registered users</a></li>
+              <li><a href="getUserInform.php">Get user information</a></li>
+            </ul>
+          </li>
+          <?php } else{ ?>
           <li><a href="getUserInform.php"><span class="glyphicon glyphicon-search"></span> Get user information</a></li>
-          <?php } ?><li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
+          <?php }} ?><li><a href="credits.php"><span class="glyphicon glyphicon-align-left"></span> Credits</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	        <?php if(!isset($_SESSION['auth'])){ ?>

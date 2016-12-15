@@ -86,43 +86,62 @@ if(isset($_SESSION['user-email'])){
 
 							  $email = mysqli_real_escape_string($connect,$_POST['email']);
 	              $password = mysqli_real_escape_string($connect,$_POST['password']);
-
 								$enct = sha1($password);
 
-	              $sql = "SELECT * FROM erabiltzailea WHERE Email = '$email' AND Password = '$enct'";
-	              $query = mysqli_query($connect,$sql);
-	              $row = mysqli_fetch_array($query,MYSQLI_ASSOC);
-	              $count = mysqli_num_rows($query);
+								if(!empty($email) && !empty($password)){
 
-	              if($count == 1){
-	                $_SESSION['user-email'] = $email;
-	                $_SESSION['user-firstname'] = $row['First name'];
-	                $_SESSION['user-lastname'] =  $row['Last name'];
-									$_SESSION['auth'] = "YES";
+									$sql5 = "SELECT Attempts FROM erabiltzailea WHERE Email = '$email' limit 1";
+									$attemptsquery = mysqli_query($connect,$sql5);
+									$attempts = mysqli_fetch_row($attemptsquery);
 
-									$date = date("Y-m-d H:i:s");
-									$sql2 = "INSERT INTO konexioak VALUES (0, '$email','$date')";
-									$query2 = mysqli_query($connect, $sql2);
-									$sql3 = "SELECT MAX(ID) FROM konexioak WHERE Email = '$email'";
-									$query3 = mysqli_query($connect,$sql3);
-									$row3 = mysqli_fetch_row($query3);
-									$_SESSION['user-connection'] = $row3[0];
+									if($attempts[0] < 3){
 
-									header('Location: layout.php');
-	                exit;
-	              } else if($count == 0) {
-	                $sql4 = "SELECT * FROM erabiltzailea WHERE Email = '$email'";
-	                $query4 = mysqli_query($connect,$sql4);
-	                $row4 = mysqli_fetch_array($query4,MYSQLI_ASSOC);
-	                $count4 = mysqli_num_rows($query4);
-	                if($count4 == 1){
-	                  echo "Password is incorrect.";
-	                } else{
-	                  echo "This username doesn't exist.";
-	                }
-	              } else{
-	                echo "Error.";
-	              }
+			              $sql = "SELECT * FROM erabiltzailea WHERE Email = '$email' AND Password = '$enct'";
+			              $query = mysqli_query($connect,$sql);
+			              $row = mysqli_fetch_array($query,MYSQLI_ASSOC);
+			              $count = mysqli_num_rows($query);
+
+			              if($count == 1){
+			                $_SESSION['user-email'] = $email;
+			                $_SESSION['user-firstname'] = $row['First name'];
+			                $_SESSION['user-lastname'] =  $row['Last name'];
+											$_SESSION['auth'] = "YES";
+
+											$date = date("Y-m-d H:i:s");
+											$sql2 = "INSERT INTO konexioak VALUES (0, '$email','$date')";
+											$query2 = mysqli_query($connect, $sql2);
+											$sql3 = "SELECT MAX(ID) FROM konexioak WHERE Email = '$email'";
+											$query3 = mysqli_query($connect,$sql3);
+											$row3 = mysqli_fetch_row($query3);
+											$_SESSION['user-connection'] = $row3[0];
+
+											mysqli_query($connect,"UPDATE erabiltzailea SET Attempts = 0 WHERE Email = '$email'");
+
+											mysqli_close($connect);
+											header('Location: layout.php');
+			                exit;
+			              } else if($count == 0) {
+			                $sql4 = "SELECT * FROM erabiltzailea WHERE Email = '$email'";
+			                $query4 = mysqli_query($connect,$sql4);
+			                $row4 = mysqli_fetch_array($query4,MYSQLI_ASSOC);
+			                $count4 = mysqli_num_rows($query4);
+			                if($count4 == 1){
+			                  echo "Password is incorrect.";
+			                } else{
+			                  echo "This username doesn't exist.";
+			                }
+											if($email !== 'web000@ehu.es'){
+												$tries = (int) $attempts[0]+1;
+												mysqli_query($connect,"UPDATE erabiltzailea SET Attempts = '$tries' WHERE Email = '$email'");
+												mysqli_close($connect);
+											}
+			              } else{
+			                echo "Error.";
+			              }
+									} else {
+										echo "This account has been blocked due to numerous attempts to sign in.";
+									}
+								}
 	            } else echo "<br>";
 	          ?></p>
 	        </div>

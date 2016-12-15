@@ -11,6 +11,7 @@
 	<style type="text/css">
     #output {
       color: #cc0000;
+			margin-top: 8px;
     }
     .form-group{
       margin-bottom: 10px;
@@ -64,7 +65,7 @@
             <?php
             if(isset($_POST['submit'])){
             	$to = $_POST['email'];
-            	$subject = "New password confirmation.";
+            	$subject = "New password";
             	$newPass = uniqid();
             	$enctPass = sha1($newPass);
 
@@ -75,11 +76,9 @@
               	</head>
               	<body>
                 	<p> Your password has been reset.</p>
-                	<p> This is your new password to have access to <a href='http://www.igortxete.hol.es'>Igortxete.hol.es</a>. </p>
+                	<p> Use this password to login: $newPass</p>
                 	<br>
-                	<p>".$newPass." </p>
-                	<br>
-                  <p> It is recommended that you change your password as soon as you login.</p>
+                  <p> We suggest that you change your password as soon as you login.</p>
                 	<br>
               	</body>
             	</html>
@@ -90,7 +89,7 @@
             	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
             	// More headers
-            	$headers .= 'From: <quizes@ehu.es>' . "\r\n";
+            	$headers .= 'From: Quizes <quizes@ehu.es>' . "\r\n";
 
             	$sentmail = mail($to,$subject,$message,$headers);
 
